@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/fragment_pizzas_list">
+
+    <fragment
+        android:id="@+id/fragment_pizzas_list"
+        android:name="kowaliszyn.zuzanna.pizzashare.ui.pizzas_list.PizzasListFragment"
+        android:label="@string/fragment_pizzas_list_label"
+        tools:layout="@layout/fragment_pizzas_list">
+        <action
+            android:id="@+id/action_fragment_pizzas_list_to_fragment_pizza_details"
+            app:destination="@id/fragment_pizza_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_pizza_details"
+        android:name="kowaliszyn.zuzanna.pizzashare.ui.pizza_details.PizzaDetailsFragment"
+        android:label="@string/fragment_pizza_details_label"
+        tools:layout="@layout/fragment_pizza_details">
+        <argument
+            android:name="pizza_index"
+            app:argType="integer" />
+        <argument
+            android:name="pizza_details"
+            app:argType="kowaliszyn.zuzanna.pizzashare.data.model.Pizza" />
+    </fragment>
+
+</navigation>

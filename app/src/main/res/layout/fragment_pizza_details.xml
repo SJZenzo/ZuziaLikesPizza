@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<kowaliszyn.zuzanna.pizzashare.utils.view.FitsSystemWindowsLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_pizza_details_pizza_diameter_input"
+                style="@style/Input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/fragment_pizza_details_diameter_label"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_pizza_price_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_pizza_details_pizza_price_input"
+                style="@style/Input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/fragment_pizza_details_price_label"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_pizza_consumers_number_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_diameter_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_pizza_details_pizza_consumers_number_input"
+                style="@style/Input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/big_space"
+                android:hint="@string/fragment_pizza_details_consumers_number_label"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_surface_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_price_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_pizza_details_surface_input"
+                style="@style/Input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/fragment_pizza_details_surface_label"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_price_per_unit_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_consumers_number_input"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/DataField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_pizza_details_price_per_unit_input"
+                style="@style/Input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_price_per_consumer_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_surface_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/DataField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_pizza_details_price_per_consumer_input"
+                style="@style/Input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/big_space"
+                android:hint="@string/fragment_pizza_details_price_per_consumer_label"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_save_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_price_per_unit_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/DataField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/fragment_pizza_details_save_button"
+                style="@style/Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_pizza_details_save_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_price_per_consumer_input" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</kowaliszyn.zuzanna.pizzashare.utils.view.FitsSystemWindowsLayout>

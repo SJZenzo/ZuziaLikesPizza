@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Core -->
+    <string name="app_name">PizzaShare</string>
+
+    <!-- Config -->
+    <string name="config_unit_name">cm²</string>
+    <string name="config_price_currency">zł</string>
+
+    <!-- Fragments labels -->
+    <string name="fragment_pizzas_list_label">Pizzas List</string>
+    <string name="fragment_pizza_details_label">Pizza details</string>
+
+    <!-- Pizzas list screen-->
+    <string name="fragment_pizzas_list_summary_label">Total cost</string>
+
+    <!-- Pizza details screen -->
+    <string name="fragment_pizza_details_diameter_label">Pizza diameter:</string>
+    <string name="fragment_pizza_details_price_label">Pizza price:</string>
+    <string name="fragment_pizza_details_consumers_number_label">Consumers number:</string>
+    <string name="fragment_pizza_details_surface_label">Pizza surface:</string>
+    <string name="fragment_pizza_details_price_per_unit_label">Pizza price of one %s:</string>
+    <string name="fragment_pizza_details_price_per_consumer_label">Pizza price for consumer:</string>
+    <string name="fragment_pizza_details_save_button">Save</string>
+
+</resources>
