@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
-import kowaliszyn.zuzanna.pizzashare.config.Config
+import kowaliszyn.zuzanna.pizzashare.config.Consts
 import kowaliszyn.zuzanna.pizzashare.data.model.Pizza
 import kowaliszyn.zuzanna.pizzashare.databinding.FragmentPizzasListBinding
 import kowaliszyn.zuzanna.pizzashare.ui.base.BaseFragment
@@ -35,7 +35,7 @@ class PizzasListFragment : BaseFragment<FragmentPizzasListBinding, PizzasListVie
 
     private fun goToPizzaDetails(pizzaIndex: Int? = null, pizza: Pizza? = null) {
         val action = PizzasListFragmentDirections.actionFragmentPizzasListToFragmentPizzaDetails(
-            pizzaIndex ?: Config.NEW_PIZZA_INDEX,
+            pizzaIndex ?: Consts.NEW_PIZZA_INDEX,
             pizza ?: Pizza()
         )
         findNavController().navigate(action)
