@@ -2,17 +2,19 @@ package kowaliszyn.zuzanna.pizzashare.utils.view
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import com.google.android.material.textfield.TextInputLayout
 import kowaliszyn.zuzanna.pizzashare.R
 import kowaliszyn.zuzanna.pizzashare.databinding.ViewInputBinding
-import kowaliszyn.zuzanna.pizzashare.utils.extensions.*
+import kowaliszyn.zuzanna.pizzashare.utils.extensions.getBooleanOrDef
+import kowaliszyn.zuzanna.pizzashare.utils.extensions.getFromStyleable
+import kowaliszyn.zuzanna.pizzashare.utils.extensions.getIntOrDef
+import kowaliszyn.zuzanna.pizzashare.utils.extensions.getStringOrDef
 
 /**
  * InputView based on Material3 TextInputLayout with method to show errors as icon and optional
@@ -36,7 +38,7 @@ class InputView @JvmOverloads constructor(
         set(v) {
             editText?.setText(v)
         }
-    val editText get() = if (isInflated) binding.root.editText else null
+    val editText get() = if (isInflated) binding.inputView.editText else null
 
     var isValidate: Boolean = true
         private set
@@ -49,9 +51,9 @@ class InputView @JvmOverloads constructor(
     var imeOptions: Int by Updatable.UpdatableProperty.lateInit()
     var readonly: Boolean by Updatable.UpdatableProperty.lateInit()
     var required: Boolean by Updatable.UpdatableProperty.lateInit()
-    var errorIcon: Drawable? by Updatable.UpdatableProperty.lateInit()
 
     private var initialText: String by Updatable.UpdatableProperty.lateInit()
+    private var isErrorShown: Boolean by Updatable.UpdatableProperty(false)
 
     private var onStateChangeListeners: MutableList<(isValid: Boolean) -> Unit> = mutableListOf()
 
@@ -90,16 +92,21 @@ class InputView @JvmOverloads constructor(
             if (readonly) R.color.background
             else R.color.input_background_color
         )
+        val errorBackgroundColor = ContextCompat.getColor(
+            context,
+            if (readonly) R.color.background
+            else R.color.input_error_background
+        )
         editText?.apply {
             inputType = this@InputView.inputType
             imeOptions = this@InputView.imeOptions
             isEnabled = !readonly
         }
-        root.apply {
-            endIconDrawable = errorIcon
+        inputView.apply {
             hint = label
-            boxBackgroundColor = backgroundColor
+            boxBackgroundColor = if (isErrorShown) errorBackgroundColor else backgroundColor
         }
+        binding.inputViewErrorIcon.isVisible = isErrorShown
     }
 
     fun addOnStateChangeListener(onStateChangeListener: (isValid: Boolean) -> Unit) {
@@ -111,11 +118,11 @@ class InputView @JvmOverloads constructor(
     }
 
     fun showError() {
-        binding.root.endIconMode = TextInputLayout.END_ICON_CUSTOM
+        isErrorShown = true
     }
 
     fun hideError() {
-        binding.root.endIconMode = TextInputLayout.END_ICON_NONE
+        isErrorShown = false
     }
 
     fun validate() {
@@ -141,9 +148,5 @@ class InputView @JvmOverloads constructor(
         )
         readonly = typedArray.getBooleanOrDef(R.styleable.InputView_readonly, false)
         required = typedArray.getBooleanOrDef(R.styleable.InputView_android_required, false)
-        errorIcon = typedArray.getDrawableOrDef(
-            R.styleable.InputView_errorIcon,
-            ContextCompat.getDrawable(context, R.drawable.ic_error)
-        )
     }
 }

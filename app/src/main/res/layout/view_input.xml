@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-    tools:layout_gravity="center"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:boxBackgroundColor="@color/input_background_color"
-    tools:hint="@string/input_text_label"
-    app:boxStrokeColor="@color/input_border_color"
-    app:boxStrokeWidth="@dimen/input_border_width"
-    app:hintTextAppearance="@style/LabelTextAppearance"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/fragment_pizzas_list_add_pizza_floating_button"
-    app:layout_constraintStart_toStartOf="parent">
+    android:layout_width="match_parent">
 
-    <com.google.android.material.textfield.TextInputEditText
-        tools:text="@string/input_text_value"
-        android:textSize="@dimen/input_text_size"
-        android:fontFamily="@font/kalam"
-        android:textColor="@color/input_text_color"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_view"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/input_text_color"
+        app:boxBackgroundColor="@color/input_background_color"
+        app:boxStrokeColor="@color/input_border_color"
+        app:boxStrokeWidth="@dimen/input_border_width"
+        app:expandedHintEnabled="false"
+        app:hintTextAppearance="@style/LabelTextAppearance"
+        app:hintTextColor="@color/input_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_pizzas_list_add_pizza_floating_button"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:hint="@string/input_text_label"
+        tools:layout_gravity="center">
 
-</com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kalam"
+            android:paddingTop="@dimen/input_padding_top"
+            android:paddingBottom="@dimen/input_padding_bottom"
+            android:textColor="@color/input_text_color"
+            android:textSize="@dimen/input_text_size"
+            tools:text="@string/input_text_value" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/input_view_error_icon"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:background="@color/transparent"
+        android:layout_gravity="center|end"
+        android:layout_marginTop="@dimen/input_error_icon_margin_top"
+        android:layout_marginEnd="@dimen/input_error_icon_margin_end"
+        android:layout_width="@dimen/input_error_icon_size"
+        android:layout_height="@dimen/input_error_icon_size"
+        android:src="@drawable/ic_error"
+        tools:ignore="ContentDescription" />
+</FrameLayout>

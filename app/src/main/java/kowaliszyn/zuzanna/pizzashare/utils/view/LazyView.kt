@@ -1,14 +1,18 @@
 package kowaliszyn.zuzanna.pizzashare.utils.view
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater
+import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.card.MaterialCardView
 import kowaliszyn.zuzanna.pizzashare.R
@@ -30,6 +34,8 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
     var lazyCornerRadius: Float by Updatable.UpdatableProperty.lateInit()
     var lazyElevation: Float by Updatable.UpdatableProperty.lateInit()
     var lazyAlpha: Float by Updatable.UpdatableProperty.lateInit()
+    var lazyLightAnimationDuration: Int by Updatable.UpdatableProperty.lateInit()
+    var lazyLightAlpha: Float by Updatable.UpdatableProperty.lateInit()
 
     var isInflated = false
 
@@ -57,9 +63,23 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
     protected open val defaultLazyAlpha
         get() =
             ResourcesCompat.getFloat(resources, R.dimen.lazy_alpha)
+    protected open val defaultLazyLightAnimationDuration
+        get() =
+            resources.getInteger(R.integer.lazy_light_animation_duration)
+    protected open val defaultLazyLightAlpha
+        get() =
+            ResourcesCompat.getFloat(resources, R.dimen.lazy_alpha)
 
     private val lazyInflater = AsyncLayoutInflater(context)
-    private val lazyCardView: MaterialCardView = MaterialCardView(context)
+    private val lazyCardView: MaterialCardView = MaterialCardView(context).apply {
+        val light = ImageView(context).apply {
+            layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
+            setImageResource(R.drawable.ic_light)
+            isVisible = false
+        }
+        addView(light)
+        light.animateLight()
+    }
 
     private var onInflatedListeners: MutableList<() -> Unit> = mutableListOf()
 
@@ -125,12 +145,32 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
     protected abstract fun VB.subscribe()
     protected abstract fun VB.update()
 
+    private fun View.animateLight() {
+        this@LazyView.measuredWidth.takeIf { it > 0 }?.let { width ->
+            isVisible = true
+            alpha = lazyLightAlpha
+            translationX = -measuredWidth.toFloat()
+            ObjectAnimator.ofFloat(
+                this,
+                "translationX",
+                width.toFloat()
+            ).apply {
+                duration = lazyLightAnimationDuration.toLong()
+                doOnEnd {
+                    animateLight()
+                }
+                start()
+            }
+        } ?: post {
+            animateLight()
+        }
+    }
+
     private fun onInflated(view: View) {
         removeAllViews()
-        binding = onBind(view).apply {
-            subscribe()
-        }
+        binding = onBind(view)
         isInflated = true
+        binding.subscribe()
         onInflatedListeners.forEach { onInflatedListener ->
             onInflatedListener.invoke()
         }
@@ -166,6 +206,14 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
         lazyAlpha = typedArray.getFloatOrDef(
             R.styleable.LazyView_lazy_alpha,
             defaultLazyAlpha
+        )
+        lazyLightAlpha = typedArray.getFloatOrDef(
+            R.styleable.LazyView_lazy_light_alpha,
+            defaultLazyLightAlpha
+        )
+        lazyLightAnimationDuration = typedArray.getIntOrDef(
+            R.styleable.LazyView_lazy_light_animation_duration,
+            defaultLazyLightAnimationDuration
         )
     }
 }

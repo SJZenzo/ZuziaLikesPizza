@@ -94,7 +94,9 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
     }
 
     private fun InputView.calculateAfterEdit() {
-        editText?.doAfterTextChanged { this@PizzaDetailsFragment.binding.calculate() }
+        addOnInflatedListener {
+            editText?.doAfterTextChanged { this@PizzaDetailsFragment.binding.calculate() }
+        }
     }
 
     private fun InputView.secureEmptyValue(
@@ -159,9 +161,7 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
             }
         }
         fragmentPizzaDetailsPizzaDiameterInput.apply {
-            addOnInflatedListener {
-                calculateAfterEdit()
-            }
+            calculateAfterEdit()
             secureEmptyValue(PizzaDetailsViewModel.DEFAULT_DIAMETER.toString(), true)
             addOnStateChangeListener { isValid ->
                 onInputStateChangeListener(
@@ -171,9 +171,7 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
             }
         }
         fragmentPizzaDetailsPizzaPriceInput.apply {
-            addOnInflatedListener {
-                calculateAfterEdit()
-            }
+            calculateAfterEdit()
             secureEmptyValue(PizzaDetailsViewModel.DEFAULT_PRICE.toString(), true)
             addOnStateChangeListener { isValid ->
                 onInputStateChangeListener(
@@ -183,15 +181,11 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
             }
         }
         fragmentPizzaDetailsPizzaSlicesNumberInput.apply {
-            addOnInflatedListener {
-                calculateAfterEdit()
-            }
+            calculateAfterEdit()
             secureEmptyValue(PizzaDetailsViewModel.DEFAULT_SLICES.toString())
         }
         fragmentPizzaDetailsPizzaConsumersNumberInput.apply {
-            addOnInflatedListener {
-                calculateAfterEdit()
-            }
+            calculateAfterEdit()
             secureEmptyValue(PizzaDetailsViewModel.DEFAULT_CONSUMERS_NUMBER.toString())
         }
         fragmentPizzaDetailsSaveButton.apply {
