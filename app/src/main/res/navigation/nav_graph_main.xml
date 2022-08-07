@@ -24,6 +24,7 @@
             app:argType="integer" />
         <argument
             android:name="pizza_details"
+            app:nullable="true"
             app:argType="kowaliszyn.zuzanna.pizzashare.data.model.Pizza" />
     </fragment>
 

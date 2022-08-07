@@ -1,10 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="ic_icon_background">#FFFFFF</color>
-
-    <color name="gray">#D8D7D6</color>
-    <color name="dark_gray">#504F4F</color>
+    <!-- Core  -->
+    <color name="ic_icon_background">@color/papaya_whip_light</color>
+    <color name="background">@color/papaya_whip_light</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="error">#EE0000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Main scheme -->
+    <color name="mahogany">#B73D00</color>
+    <color name="yellow_orange">#F7AD45</color>
+    <color name="papaya_whip">#FFF1D7</color>
+    <color name="papaya_whip_light">#FBF5EB</color>
+    <color name="maximum_green">#5F8D37</color>
+
 </resources>

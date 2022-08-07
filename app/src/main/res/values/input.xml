@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="InputView">
+        <attr name="android:label" />
+        <attr name="android:text" />
+        <attr name="android:inputType" />
+        <attr name="android:imeOptions" />
+        <attr name="android:required" />
+        <attr name="readonly" format="boolean" />
+    </declare-styleable>
+
+    <dimen name="input_error_icon_size">24dp</dimen>
+    <dimen name="input_padding_horizontal">24dp</dimen>
+    <dimen name="input_padding_vertical">16dp</dimen>
+    <dimen name="input_corner_radius">4dp</dimen>
+    <dimen name="input_border_weight">1dp</dimen>
+    <dimen name="input_text_size">18sp</dimen>
+    <dimen name="input_label_margin">4dp</dimen>
+    <dimen name="input_label_text_size">14sp</dimen>
+    <dimen name="input_label_start_offset">12dp</dimen>
+    <color name="input_label_text_color">@color/mahogany</color>
+    <color name="input_background_color">@color/white</color>
+    <color name="input_border_color">@color/mahogany</color>
+    <color name="input_text_color">@color/mahogany</color>
+    <string name="input_text_value">Some input text</string>
+    <string name="input_text_label">Some input hint</string>
+
+    <!--  Hardcoded proportions !! -->
+    <dimen name="input_label_bottom_offset">6dp</dimen>
+    <dimen name="input_label_top_offset">10dp</dimen>
+
+    <color name="toolTip">@color/black</color>
+
+</resources>

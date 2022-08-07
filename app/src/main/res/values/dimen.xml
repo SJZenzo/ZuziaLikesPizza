@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--  Spacing  -->
+    <dimen name="min_space">4dp</dimen>
+    <dimen name="smaller_space">8dp</dimen>
     <dimen name="small_space">16dp</dimen>
     <dimen name="middle_space">32dp</dimen>
     <dimen name="big_space">48dp</dimen>
+
+    <!-- Pizza details screen -->
+    <dimen name="fragment_pizza_details_error_label_text_size">16sp</dimen>
+
 </resources>

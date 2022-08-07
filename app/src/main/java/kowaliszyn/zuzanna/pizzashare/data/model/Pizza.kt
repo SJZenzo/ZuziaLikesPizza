@@ -5,10 +5,12 @@ import kotlinx.parcelize.Parcelize
 import kotlin.math.pow
 
 @Parcelize
-data class Pizza(
-    val diameter: Float = 0f,
-    val price: Float = 0f,
-    val consumersNumber: Int = 1
+data class Pizza constructor(
+    val name: String,
+    val diameter: Float,
+    val price: Float,
+    val slices: Int,
+    val consumersNumber: Int
 ) : Parcelable {
 
     init {

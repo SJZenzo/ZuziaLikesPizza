@@ -1,4 +1,0 @@
-<resources>
-
-    <style name="Theme.PizzaShare" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
-</resources>

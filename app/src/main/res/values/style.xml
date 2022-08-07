@@ -2,16 +2,7 @@
 <resources>
 
     <style name="Fragment">
-        <item name="android:padding">@dimen/middle_space</item>
-    </style>
-
-    <style name="Input" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:layout_marginBottom">@dimen/small_space</item>
-    </style>
-
-    <style name="DataField">
-        <item name="android:enabled">false</item>
-        <item name="android:textColor">@color/data_field_text_color</item>
+        <item name="android:padding">@dimen/small_space</item>
     </style>
 
     <style name="Button" parent="Widget.MaterialComponents.Button.TextButton" />

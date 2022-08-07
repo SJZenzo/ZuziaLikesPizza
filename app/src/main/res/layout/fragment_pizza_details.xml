@@ -2,6 +2,7 @@
 
 <kowaliszyn.zuzanna.pizzashare.utils.view.FitsSystemWindowsLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -15,123 +16,141 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_pizza_details_pizza_diameter_input"
-                style="@style/Input"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragment_pizza_details_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/fragment_pizza_details_diameter_label"
-                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_pizza_price_input"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_error_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                    android:id="@+id/fragment_pizza_details_pizza_name_input"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
+                    android:imeOptions="actionNext"
+                    android:required="true"
+                    android:label="@string/fragment_pizza_details_name_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                    android:id="@+id/fragment_pizza_details_pizza_diameter_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/smaller_space"
+                    android:layout_marginEnd="@dimen/min_space"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:label="@string/fragment_pizza_details_diameter_label"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_pizza_details_pizza_price_input"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_name_input" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_pizza_details_pizza_price_input"
-                style="@style/Input"
+                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                    android:id="@+id/fragment_pizza_details_pizza_price_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/min_space"
+                    android:layout_marginTop="@dimen/smaller_space"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:label="@string/fragment_pizza_details_price_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_pizza_details_pizza_diameter_input"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_name_input" />
+
+                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                    android:id="@+id/fragment_pizza_details_pizza_slices_number_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/smaller_space"
+                    android:layout_marginEnd="@dimen/min_space"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:label="@string/fragment_pizza_details_slices_number_label"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_pizza_details_pizza_consumers_number_input"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_diameter_input" />
+
+                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                    android:id="@+id/fragment_pizza_details_pizza_consumers_number_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/min_space"
+                    android:layout_marginTop="@dimen/smaller_space"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:label="@string/fragment_pizza_details_consumers_number_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_pizza_details_pizza_slices_number_input"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_price_input" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/fragment_pizza_details_error_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/fragment_pizza_details_price_label"
-                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_pizza_consumers_number_input"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_diameter_input">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_pizza_details_pizza_consumers_number_input"
-                style="@style/Input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/big_space"
-                android:hint="@string/fragment_pizza_details_consumers_number_label"
+                android:layout_marginHorizontal="@dimen/smaller_space"
+                android:layout_marginTop="@dimen/smaller_space"
+                android:fontFamily="@font/kalam"
+                android:textColor="@color/error"
+                android:textSize="@dimen/fragment_pizza_details_error_label_text_size"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_surface_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_price_input">
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_container"
+                tools:text="@string/fragment_pizza_details_pizza_name_error"
+                tools:visibility="visible" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionDone"
-                    android:inputType="numberDecimal" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
                 android:id="@+id/fragment_pizza_details_surface_input"
-                style="@style/Input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/fragment_pizza_details_surface_label"
+                android:layout_marginTop="@dimen/middle_space"
+                android:label="@string/fragment_pizza_details_surface_label"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_price_per_unit_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_consumers_number_input"
-                app:layout_constraintVertical_chainStyle="packed">
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_error_label"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:readonly="true" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DataField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
                 android:id="@+id/fragment_pizza_details_price_per_unit_input"
-                style="@style/Input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/smaller_space"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_price_per_consumer_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_surface_input">
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_surface_input"
+                app:readonly="true"
+                tools:label="@string/fragment_pizza_details_price_per_unit_label" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DataField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
                 android:id="@+id/fragment_pizza_details_price_per_consumer_input"
-                style="@style/Input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/big_space"
-                android:hint="@string/fragment_pizza_details_price_per_consumer_label"
+                android:layout_marginTop="@dimen/smaller_space"
+                android:label="@string/fragment_pizza_details_price_per_consumer_label"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_save_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_price_per_unit_input">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/DataField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_price_per_unit_input"
+                app:readonly="true" />
 
             <Button
                 android:id="@+id/fragment_pizza_details_save_button"
                 style="@style/Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/big_space"
                 android:text="@string/fragment_pizza_details_save_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -141,4 +160,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
 </kowaliszyn.zuzanna.pizzashare.utils.view.FitsSystemWindowsLayout>

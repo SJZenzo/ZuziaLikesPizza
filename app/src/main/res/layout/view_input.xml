@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/view_input_container"
+        android:elevation="0dp"
+        app:cardElevation="0dp"
+        android:layout_marginTop="@dimen/input_label_bottom_offset"
+        app:strokeWidth="@dimen/input_border_weight"
+        app:cardBackgroundColor="@color/input_background_color"
+        app:contentPaddingTop="@dimen/input_padding_vertical"
+        app:contentPaddingBottom="@dimen/input_padding_vertical"
+        app:contentPaddingLeft="@dimen/input_padding_horizontal"
+        app:contentPaddingRight="@dimen/input_padding_horizontal"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="@color/input_border_color"
+        app:cardCornerRadius="@dimen/input_corner_radius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/view_input"
+            android:textColor="@color/input_text_color"
+            android:background="@color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/input_text_value"
+            android:textSize="@dimen/input_text_size"
+            android:fontFamily="@font/kalam" />
+
+        <ImageView
+            android:layout_width="@dimen/input_error_icon_size"
+            android:layout_height="@dimen/input_error_icon_size"
+            android:id="@+id/view_input_error_icon"
+            android:visibility="gone"
+            android:layout_gravity="center|end"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="@+id/view_input"
+            app:layout_constraintEnd_toEndOf="@+id/view_input"
+            app:layout_constraintTop_toTopOf="@+id/view_input"
+            app:srcCompat="@drawable/ic_error"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="@dimen/input_label_start_offset"
+        android:layout_width="wrap_content"
+        android:background="@color/transparent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view_input_label_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/input_label_top_offset"
+            android:background="@color/input_background_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/view_input_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kalam"
+            android:layout_marginHorizontal="@dimen/input_label_margin"
+            android:background="@color/transparent"
+            tools:text="@string/input_text_label"
+            android:textSize="@dimen/input_label_text_size"
+            android:textColor="@color/input_label_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -14,6 +14,13 @@ class PizzaDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    companion object {
+        const val DEFAULT_DIAMETER = 0f
+        const val DEFAULT_PRICE = 0f
+        const val DEFAULT_SLICES = 8
+        const val DEFAULT_CONSUMERS_NUMBER = 1
+    }
+
     enum class CalculatingState {
         DEFAULT, CALCULATING, QUEUED, REFILL,
     }
@@ -25,14 +32,22 @@ class PizzaDetailsViewModel @Inject constructor(
     private val pizzaIndex = args.pizzaIndex
 
     init {
-        loadedPizzaDataEvent.value = args.pizzaDetails
+        loadedPizzaDataEvent.value = args.pizzaDetails ?: generatePizza()
     }
 
-    fun generatePizza(diameter: Float?, price: Float?, consumerNumber: Int?) =
+    fun generatePizza(
+        name: String? = null,
+        diameter: Float? = null,
+        price: Float? = null,
+        sliceNumber: Int? = null,
+        consumerNumber: Int? = null
+    ) =
         Pizza(
-            diameter ?: 0f,
-            price ?: 0f,
-            consumerNumber?.takeIf { it > 0 } ?: 1
+            name ?: "",
+            diameter ?: DEFAULT_DIAMETER,
+            price ?: DEFAULT_PRICE,
+            sliceNumber ?: DEFAULT_SLICES,
+            consumerNumber?.takeIf { it > 0 } ?: DEFAULT_CONSUMERS_NUMBER
         )
 
     fun savePizza(pizza: Pizza) =

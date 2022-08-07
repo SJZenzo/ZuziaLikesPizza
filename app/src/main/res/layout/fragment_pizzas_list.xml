@@ -19,7 +19,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fragment_pizzas_list_total_cost_label"
-        style="@style/Input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
@@ -30,7 +29,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/DataField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -41,8 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        app:backgroundTint="@color/gray"
-        app:tint="@color/dark_gray"
+        app:backgroundTint="@color/white"
+        app:tint="@color/black"
         android:src="@drawable/ic_add"
         app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_pizzas_list_total_cost_label"

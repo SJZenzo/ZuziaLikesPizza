@@ -30,18 +30,18 @@ class PizzasListFragment : BaseFragment<FragmentPizzasListBinding, PizzasListVie
         parent: ViewGroup?,
         attachToParent: Boolean
     ) = FragmentPizzasListBinding.inflate(layoutInflater, parent, attachToParent).apply {
-        bindingSubscribe()
+        subscribe()
     }
 
     private fun goToPizzaDetails(pizzaIndex: Int? = null, pizza: Pizza? = null) {
         val action = PizzasListFragmentDirections.actionFragmentPizzasListToFragmentPizzaDetails(
             pizzaIndex ?: Consts.NEW_PIZZA_INDEX,
-            pizza ?: Pizza()
+            pizza
         )
         findNavController().navigate(action)
     }
 
-    private fun FragmentPizzasListBinding.bindingSubscribe() {
+    private fun FragmentPizzasListBinding.subscribe() {
         fragmentPizzasListAddPizzaFloatingButton.setOnClickListener {
             goToPizzaDetails()
         }
