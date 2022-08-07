@@ -9,7 +9,6 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
 import kowaliszyn.zuzanna.pizzashare.config.Consts
-import kowaliszyn.zuzanna.pizzashare.data.model.Pizza
 import kowaliszyn.zuzanna.pizzashare.databinding.FragmentPizzasListBinding
 import kowaliszyn.zuzanna.pizzashare.ui.base.BaseFragment
 import kowaliszyn.zuzanna.pizzashare.utils.extensions.roundToPlaces
@@ -33,10 +32,9 @@ class PizzasListFragment : BaseFragment<FragmentPizzasListBinding, PizzasListVie
         subscribe()
     }
 
-    private fun goToPizzaDetails(pizzaIndex: Int? = null, pizza: Pizza? = null) {
+    private fun goToPizzaDetails(pizzaIndex: Int = Consts.NEW_PIZZA_INDEX) {
         val action = PizzasListFragmentDirections.actionFragmentPizzasListToFragmentPizzaDetails(
-            pizzaIndex ?: Consts.NEW_PIZZA_INDEX,
-            pizza
+            pizzaIndex
         )
         findNavController().navigate(action)
     }
@@ -49,7 +47,7 @@ class PizzasListFragment : BaseFragment<FragmentPizzasListBinding, PizzasListVie
     }
 
     @SuppressLint("SetTextI18n")
-    override fun PizzasListViewModel.onViewModelSubscribe() {
+    override fun PizzasListViewModel.subscribe() {
         loadedPizzasListEvent.observe(viewLifecycleOwner) { pizzaItemsList ->
             pizzasListAdapter.clear()
             pizzasListAdapter.addAll(pizzaItemsList)
@@ -60,7 +58,7 @@ class PizzasListFragment : BaseFragment<FragmentPizzasListBinding, PizzasListVie
             )
         }
         onClickPizzasListItemEvent.observe(viewLifecycleOwner) { pizzaClickHolder ->
-            goToPizzaDetails(pizzaClickHolder.pizzaIndex, pizzaClickHolder.pizza)
+            goToPizzaDetails(pizzaClickHolder.pizzaIndex)
         }
     }
 }

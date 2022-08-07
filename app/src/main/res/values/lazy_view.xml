@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LazyView">
+        <attr name="lazy_border_color" format="color" />
+        <attr name="lazy_background_color" format="color" />
+        <attr name="lazy_border_width" format="dimension" />
+        <attr name="lazy_height" format="dimension" />
+        <attr name="lazy_corner_radius" format="dimension" />
+        <attr name="lazy_elevation" format="dimension" />
+        <attr name="lazy_alpha" format="float" />
+    </declare-styleable>
+
+    <color name="lazy_background_color">@color/background</color>
+    <color name="lazy_border_color">@color/mahogany</color>
+    <dimen name="lazy_border_width">1dp</dimen>
+    <dimen name="lazy_corner_radius">4dp</dimen>
+    <dimen name="lazy_elevation">0dp</dimen>
+    <item name="lazy_alpha" type="dimen" format="float">0.9f</item>
+
+</resources>

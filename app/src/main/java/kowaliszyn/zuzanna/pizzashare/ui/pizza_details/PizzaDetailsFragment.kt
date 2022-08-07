@@ -12,6 +12,7 @@ import kowaliszyn.zuzanna.pizzashare.R
 import kowaliszyn.zuzanna.pizzashare.data.model.Pizza
 import kowaliszyn.zuzanna.pizzashare.databinding.FragmentPizzaDetailsBinding
 import kowaliszyn.zuzanna.pizzashare.ui.base.BaseFragment
+import kowaliszyn.zuzanna.pizzashare.utils.extensions.doAfterChildrenInflated
 import kowaliszyn.zuzanna.pizzashare.utils.extensions.isZero
 import kowaliszyn.zuzanna.pizzashare.utils.extensions.roundToPlaces
 import kowaliszyn.zuzanna.pizzashare.utils.view.InputView
@@ -31,9 +32,11 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
         subscribe()
     }
 
-    override fun PizzaDetailsViewModel.onViewModelSubscribe() {
+    override fun PizzaDetailsViewModel.subscribe() {
         loadedPizzaDataEvent.observe(viewLifecycleOwner) { pizza ->
-            binding.refill(pizza)
+            binding.fragmentPizzaDetailsContainer.doAfterChildrenInflated {
+                binding.refill(pizza)
+            }
         }
     }
 
@@ -78,20 +81,20 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
             calculatingState = PizzaDetailsViewModel.CalculatingState.CALCULATING
         }
         val pizza = pizzaFromRefill ?: generatePizza()
-        fragmentPizzaDetailsSurfaceInput.editText.setText(
+        fragmentPizzaDetailsSummary.editText?.setText(
             "${pizza.surface.roundToPlaces(2)}$unitName"
         )
-        fragmentPizzaDetailsPricePerUnitInput.editText.setText(
-            "${pizza.pricePerUnit.roundToPlaces(2)}$priceCurrency"
-        )
-        fragmentPizzaDetailsPricePerConsumerInput.editText.setText(
-            "${pizza.pricePerConsumer.roundToPlaces(2)}$priceCurrency"
-        )
+//        fragmentPizzaDetailsPricePerUnitInput.editText?.setText(
+//            "${pizza.pricePerUnit.roundToPlaces(2)}$priceCurrency"
+//        )
+//        fragmentPizzaDetailsPricePerConsumerInput.editText?.setText(
+//            "${pizza.pricePerConsumer.roundToPlaces(2)}$priceCurrency"
+//        )
         viewModel.calculatingState = PizzaDetailsViewModel.CalculatingState.DEFAULT
     }
 
     private fun InputView.calculateAfterEdit() {
-        editText.doAfterTextChanged { this@PizzaDetailsFragment.binding.calculate() }
+        editText?.doAfterTextChanged { this@PizzaDetailsFragment.binding.calculate() }
     }
 
     private fun InputView.secureEmptyValue(
@@ -129,26 +132,26 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
                 findNavController().popBackStack()
             }
             !isNameValid -> {
-                fragmentPizzaDetailsPizzaNameInput.editText.requestFocus()
+                fragmentPizzaDetailsPizzaNameInput.editText?.requestFocus()
             }
             !isDiameterValid -> {
-                fragmentPizzaDetailsPizzaDiameterInput.editText.requestFocus()
+                fragmentPizzaDetailsPizzaDiameterInput.editText?.requestFocus()
             }
             !isPriceValid -> {
-                fragmentPizzaDetailsPizzaPriceInput.editText.requestFocus()
+                fragmentPizzaDetailsPizzaPriceInput.editText?.requestFocus()
             }
         }
     }
 
     private fun FragmentPizzaDetailsBinding.subscribe() {
-        fragmentPizzaDetailsPricePerUnitInput.label =
-            context?.getString(
-                R.string.fragment_pizza_details_price_per_unit_label
-            )?.format(
-                context?.getString(R.string.config_unit_name) ?: ""
-            ) ?: ""
+//        fragmentPizzaDetailsPricePerUnitInput.label =
+//            context?.getString(
+//                R.string.fragment_pizza_details_price_per_unit_label
+//            )?.format(
+//                context?.getString(R.string.config_unit_name) ?: ""
+//            ) ?: ""
         fragmentPizzaDetailsPizzaNameInput.apply {
-            onStateChangeListener = { isValid ->
+            addOnStateChangeListener { isValid ->
                 onInputStateChangeListener(
                     isValid,
                     context.getString(R.string.fragment_pizza_details_pizza_name_error)
@@ -156,9 +159,11 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
             }
         }
         fragmentPizzaDetailsPizzaDiameterInput.apply {
-            calculateAfterEdit()
+            addOnInflatedListener {
+                calculateAfterEdit()
+            }
             secureEmptyValue(PizzaDetailsViewModel.DEFAULT_DIAMETER.toString(), true)
-            onStateChangeListener = { isValid ->
+            addOnStateChangeListener { isValid ->
                 onInputStateChangeListener(
                     isValid,
                     context.getString(R.string.fragment_pizza_details_pizza_diameter_error)
@@ -166,9 +171,11 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
             }
         }
         fragmentPizzaDetailsPizzaPriceInput.apply {
-            calculateAfterEdit()
+            addOnInflatedListener {
+                calculateAfterEdit()
+            }
             secureEmptyValue(PizzaDetailsViewModel.DEFAULT_PRICE.toString(), true)
-            onStateChangeListener = { isValid ->
+            addOnStateChangeListener { isValid ->
                 onInputStateChangeListener(
                     isValid,
                     context.getString(R.string.fragment_pizza_details_pizza_price_error)
@@ -176,11 +183,15 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
             }
         }
         fragmentPizzaDetailsPizzaSlicesNumberInput.apply {
-            calculateAfterEdit()
+            addOnInflatedListener {
+                calculateAfterEdit()
+            }
             secureEmptyValue(PizzaDetailsViewModel.DEFAULT_SLICES.toString())
         }
         fragmentPizzaDetailsPizzaConsumersNumberInput.apply {
-            calculateAfterEdit()
+            addOnInflatedListener {
+                calculateAfterEdit()
+            }
             secureEmptyValue(PizzaDetailsViewModel.DEFAULT_CONSUMERS_NUMBER.toString())
         }
         fragmentPizzaDetailsSaveButton.apply {
@@ -193,20 +204,22 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
 
     private fun FragmentPizzaDetailsBinding.refill(pizza: Pizza) {
         viewModel.calculatingState = PizzaDetailsViewModel.CalculatingState.REFILL
-        fragmentPizzaDetailsPizzaNameInput.editText.setText(pizza.name)
-        fragmentPizzaDetailsPizzaDiameterInput.editText.setText(
+        fragmentPizzaDetailsPizzaNameInput.editText?.setText(pizza.name)
+        fragmentPizzaDetailsPizzaDiameterInput.editText?.setText(
             pizza.diameter.roundToPlaces(2)
         )
-        fragmentPizzaDetailsPizzaPriceInput.editText.setText(
+        fragmentPizzaDetailsPizzaPriceInput.editText?.setText(
             pizza.price.roundToPlaces(2)
         )
-        fragmentPizzaDetailsPizzaSlicesNumberInput.editText.setText(
+        fragmentPizzaDetailsPizzaSlicesNumberInput.editText?.setText(
             pizza.slices.toString()
         )
-        fragmentPizzaDetailsPizzaConsumersNumberInput.editText.setText(
+        fragmentPizzaDetailsPizzaConsumersNumberInput.editText?.setText(
             pizza.consumersNumber.toString()
         )
         viewModel.calculatingState = PizzaDetailsViewModel.CalculatingState.DEFAULT
-        calculate(pizza)
+        fragmentPizzaDetailsSummary.addOnInflatedListener {
+            calculate(pizza)
+        }
     }
 }

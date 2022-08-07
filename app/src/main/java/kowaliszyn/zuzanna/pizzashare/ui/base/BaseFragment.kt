@@ -12,7 +12,7 @@ import kowaliszyn.zuzanna.pizzashare.R
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
     abstract val viewModel: VM
-    lateinit var binding: VB
+    protected lateinit var binding: VB
         private set
 
     protected val priceCurrency get() = context?.getString(R.string.config_price_currency) ?: ""
@@ -34,9 +34,9 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.onViewModelSubscribe()
+        viewModel.subscribe()
     }
 
-    open fun VM.onViewModelSubscribe() {
+    open fun VM.subscribe() {
     }
 }

@@ -1,17 +1,14 @@
 package kowaliszyn.zuzanna.pizzashare.data.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 import kotlin.math.pow
 
-@Parcelize
 data class Pizza constructor(
     val name: String,
     val diameter: Float,
     val price: Float,
     val slices: Int,
     val consumersNumber: Int
-) : Parcelable {
+) {
 
     init {
         if (diameter < 0 || price < 0 || consumersNumber < 0) {

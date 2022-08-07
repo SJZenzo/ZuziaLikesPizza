@@ -18,7 +18,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
     override fun onBind(layoutInflater: LayoutInflater) =
         ActivitySplashBinding.inflate(layoutInflater)
 
-    override fun SplashViewModel.onViewModelSubscribe() {
+    override fun SplashViewModel.subscribe() {
         goToMainActivityEvent.observe(lifeCycleOwner) {
             startActivity<MainActivity>(finishCurrent = true)
         }

@@ -10,7 +10,7 @@ import androidx.viewbinding.ViewBinding
 abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity() {
 
     abstract val viewModel: VM
-    lateinit var binding: VB
+    protected lateinit var binding: VB
         private set
 
     protected val lifeCycleOwner get() = this as LifecycleOwner
@@ -21,9 +21,9 @@ abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivit
         super.onCreate(savedInstanceState)
         binding = onBind(LayoutInflater.from(this))
         setContentView(binding.root)
-        viewModel.onViewModelSubscribe()
+        viewModel.subscribe()
     }
 
-    open fun VM.onViewModelSubscribe() {
+    open fun VM.subscribe() {
     }
 }

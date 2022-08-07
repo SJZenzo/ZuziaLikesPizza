@@ -75,7 +75,7 @@ fun TypedArray?.getColorStateListOrDef(@StyleableRes resId: Int, def: ColorState
         def
     }
 
-fun TypedArray?.getDrawableOrDef(@StyleableRes resId: Int, def: Drawable) =
+fun TypedArray?.getDrawableOrDef(@StyleableRes resId: Int, def: Drawable?) =
     try {
         this?.getDrawable(resId) ?: def
     } catch (e: Exception) {

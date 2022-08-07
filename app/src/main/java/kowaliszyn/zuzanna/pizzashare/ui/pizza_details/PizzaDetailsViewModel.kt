@@ -3,6 +3,7 @@ package kowaliszyn.zuzanna.pizzashare.ui.pizza_details
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kowaliszyn.zuzanna.pizzashare.config.Consts
 import kowaliszyn.zuzanna.pizzashare.data.model.Pizza
 import kowaliszyn.zuzanna.pizzashare.manager.PizzaManager
 import kowaliszyn.zuzanna.pizzashare.utils.EventLiveData
@@ -32,7 +33,9 @@ class PizzaDetailsViewModel @Inject constructor(
     private val pizzaIndex = args.pizzaIndex
 
     init {
-        loadedPizzaDataEvent.value = args.pizzaDetails ?: generatePizza()
+        loadedPizzaDataEvent.value =
+            if (pizzaIndex == Consts.NEW_PIZZA_INDEX) generatePizza()
+            else pizzaManager.get(pizzaIndex)
     }
 
     fun generatePizza(
