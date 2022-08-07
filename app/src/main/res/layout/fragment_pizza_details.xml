@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<kowaliszyn.zuzanna.pizzashare.utils.view.FitsSystemWindowsLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<creative.development.pizzashare.utils.view.FitsSystemWindowsLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Fragment"
@@ -26,7 +26,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed">
 
-                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                <creative.development.pizzashare.utils.view.InputView
                     android:id="@+id/fragment_pizza_details_pizza_name_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                <creative.development.pizzashare.utils.view.InputView
                     android:id="@+id/fragment_pizza_details_pizza_diameter_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_name_input" />
 
-                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                <creative.development.pizzashare.utils.view.InputView
                     android:id="@+id/fragment_pizza_details_pizza_price_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                     app:layout_constraintStart_toEndOf="@+id/fragment_pizza_details_pizza_diameter_input"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_name_input" />
 
-                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                <creative.development.pizzashare.utils.view.InputView
                     android:id="@+id/fragment_pizza_details_pizza_slices_number_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_pizza_diameter_input" />
 
-                <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+                <creative.development.pizzashare.utils.view.InputView
                     android:id="@+id/fragment_pizza_details_pizza_consumers_number_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                 tools:text="@string/fragment_pizza_details_pizza_name_error"
                 tools:visibility="visible" />
 
-            <kowaliszyn.zuzanna.pizzashare.utils.view.InputView
+            <creative.development.pizzashare.utils.view.InputView
                 android:id="@+id/fragment_pizza_details_summary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -138,4 +138,4 @@
 
     </androidx.core.widget.NestedScrollView>
 
-</kowaliszyn.zuzanna.pizzashare.utils.view.FitsSystemWindowsLayout>
+</creative.development.pizzashare.utils.view.FitsSystemWindowsLayout>

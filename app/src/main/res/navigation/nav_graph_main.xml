@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment_pizzas_list"
-        android:name="kowaliszyn.zuzanna.pizzashare.ui.pizzas_list.PizzasListFragment"
+        android:name="creative.development.pizzashare.ui.pizzas_list.PizzasListFragment"
         android:label="@string/fragment_pizzas_list_label"
         tools:layout="@layout/fragment_pizzas_list">
         <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/fragment_pizza_details"
-        android:name="kowaliszyn.zuzanna.pizzashare.ui.pizza_details.PizzaDetailsFragment"
+        android:name="creative.development.pizzashare.ui.pizza_details.PizzaDetailsFragment"
         android:label="@string/fragment_pizza_details_label"
         tools:layout="@layout/fragment_pizza_details">
         <argument

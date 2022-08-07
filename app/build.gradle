@@ -10,7 +10,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId 'kowaliszyn.zuzanna.pizzashare'
+        applicationId 'creative.development.pizzashare'
         minSdk 23
         targetSdk 32
         versionCode 1

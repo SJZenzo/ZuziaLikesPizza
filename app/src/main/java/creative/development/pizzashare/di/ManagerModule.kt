@@ -1,0 +1,18 @@
+package creative.development.pizzashare.di
+
+import creative.development.pizzashare.manager.PizzaManager
+import creative.development.pizzashare.manager.impl.PizzaManagerImpl
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class ManagerModule {
+
+    @Binds
+    @Singleton
+    abstract fun bindAnalyticsService(pizzaManager: PizzaManagerImpl): PizzaManager
+}
