@@ -9,17 +9,29 @@ import kotlin.concurrent.timerTask
 class SplashViewModel : ViewModel() {
 
     val goToMainActivityEvent = EventLiveData<Unit>()
+    val startAnimationEvent = EventLiveData<Unit>()
+
+    private val timer = Timer()
 
     init {
-        startTimer()
+        startAnimation()
     }
 
-    fun startTimer() {
-        Timer().schedule(
+    fun endAnimation() {
+        timer.schedule(
             timerTask {
                 goToMainActivityEvent.postValue(Unit)
             },
             Consts.DELAY_SPLASH_SCREEN_IN_MILLIS
+        )
+    }
+
+    private fun startAnimation() {
+        timer.schedule(
+            timerTask {
+                startAnimationEvent.postValue(Unit)
+            },
+            Consts.DELAY_SPLASH_SCREEN_ANIMATION_IN_MILLIS
         )
     }
 }

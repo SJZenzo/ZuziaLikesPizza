@@ -11,6 +11,10 @@
     <string name="fragment_pizzas_list_label">Pizzas List</string>
     <string name="fragment_pizza_details_label">Pizza details</string>
 
+    <!-- Splash screen-->
+    <string name="activity_splash_app_title_first_line">Pizza</string>
+    <string name="activity_splash_app_title_second_line">Share</string>
+
     <!-- Pizzas list screen-->
     <string name="fragment_pizzas_list_summary_label">Total cost</string>
 
