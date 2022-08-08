@@ -8,6 +8,11 @@
     <dimen name="middle_space">32dp</dimen>
     <dimen name="big_space">48dp</dimen>
 
+    <!--  Splash screen  -->
+    <dimen name="activity_splash_title_text_size">96sp</dimen>
+    <dimen name="activity_splash_app_title_margin">24dp</dimen>
+    <item name="activity_splash_background_alpha" type="dimen" format="float">0.3f</item>
+
     <!-- Pizza details screen -->
     <dimen name="fragment_pizza_details_error_label_text_size">16sp</dimen>
 

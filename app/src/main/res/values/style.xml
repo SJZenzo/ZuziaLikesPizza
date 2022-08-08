@@ -3,6 +3,7 @@
 
     <style name="Fragment">
         <item name="android:padding">@dimen/small_space</item>
+        <item name="android:background">@color/background</item>
     </style>
 
     <style name="Button" parent="Widget.MaterialComponents.Button.TextButton" />
