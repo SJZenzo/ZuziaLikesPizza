@@ -55,9 +55,11 @@ class PizzasListFragment : BaseFragment<FragmentPizzasListBinding, PizzasListVie
             binding.layoutEmptyPizzasList.root.isVisible = pizzaItemsList.isEmpty()
         }
         countedTotalCostEvent.observe(viewLifecycleOwner) { totalCost ->
-            binding.fragmentPizzasListTotalCostLabel.editText?.setText(
-                "${totalCost.roundToPlaces(2)}$priceCurrency"
-            )
+            binding.fragmentPizzasListTotalCostLabel.apply {
+                addOnInflatedListener {
+                    editText?.setText("${totalCost.roundToPlaces(2)}$priceCurrency")
+                }
+            }
         }
         onClickPizzasListItemEvent.observe(viewLifecycleOwner) { pizzaClickHolder ->
             goToPizzaDetails(pizzaClickHolder.pizzaIndex)

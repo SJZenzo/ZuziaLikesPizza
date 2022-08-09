@@ -19,12 +19,13 @@ class PizzaListItem(
 
     @SuppressLint("SetTextI18n")
     override fun bind(binding: ItemPizzasListBinding, position: Int) {
+        binding.itemPizzasListNameLabel.text = pizza.name
         binding.itemPizzasListDiameterLabel.text =
             "${pizza.diameter.roundToPlaces(2)}${binding.root.context.getString(R.string.config_unit_name)}"
         binding.itemPizzasListPriceLabel.text =
             "${pizza.price.roundToPlaces(2)}${binding.root.context.getString(R.string.config_price_currency)}"
         binding.itemPizzasListConsumersNumberLabel.text =
-            "${pizza.consumersNumber} consumers"
+            "${pizza.consumersNumber}"
         binding.root.setOnClickListener {
             clickListener(PizzasListItemClickHolder(position, pizza))
         }
