@@ -1,5 +1,11 @@
 <resources>
 
+    <!-- Tools -->
+    <string name="tools_pizza_name">Very long name pizza</string>
+    <string name="tools_pizza_diameter">45cm</string>
+    <string name="tools_pizza_price">56$</string>
+    <string name="tools_pizza_consumers_number">4</string>
+
     <!-- Core -->
     <string name="app_name">PizzaShare</string>
 
@@ -17,6 +23,8 @@
 
     <!-- Pizzas list screen-->
     <string name="fragment_pizzas_list_summary_label">Total cost</string>
+    <string name="fragment_pizzas_list_add_pizza_button">Add pizza</string>
+    <string name="fragment_pizzas_list_empty_list_message">No pizza has been added yet</string>
 
     <!-- Pizza details screen -->
     <string name="fragment_pizza_details_diameter_label">Pizza diameter:</string>

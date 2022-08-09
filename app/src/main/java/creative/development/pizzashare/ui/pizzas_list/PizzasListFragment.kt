@@ -3,6 +3,7 @@ package creative.development.pizzashare.ui.pizzas_list
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.xwray.groupie.GroupAdapter
@@ -51,6 +52,7 @@ class PizzasListFragment : BaseFragment<FragmentPizzasListBinding, PizzasListVie
         loadedPizzasListEvent.observe(viewLifecycleOwner) { pizzaItemsList ->
             pizzasListAdapter.clear()
             pizzasListAdapter.addAll(pizzaItemsList)
+            binding.layoutEmptyPizzasList.root.isVisible = pizzaItemsList.isEmpty()
         }
         countedTotalCostEvent.observe(viewLifecycleOwner) { totalCost ->
             binding.fragmentPizzasListTotalCostLabel.editText?.setText(
