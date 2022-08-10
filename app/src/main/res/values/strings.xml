@@ -7,13 +7,18 @@
     <string translatable="false" name="tools_pizza_consumers_number">4</string>
     <string translatable="false" name="tools_input_text_value">Some input text</string>
     <string translatable="false" name="tools_input_text_label">Some input hint</string>
+    <string translatable="false" name="tools_pizza_details_summary_surface">2000cm²</string>
+    <string translatable="false" name="tools_pizza_details_summary_price_per_unit">2.34$</string>
+    <string translatable="false" name="tools_pizza_details_summary_price_per_slice">4$</string>
+    <string translatable="false" name="tools_pizza_details_summary_price_per_consumer">12$</string>
 
     <!-- Core -->
     <string name="app_name">PizzaShare</string>
 
-    <!-- Config -->
-    <string name="config_unit_name">cm²</string>
-    <string name="config_price_currency">zł</string>
+    <!-- Formats -->
+    <string name="format_length">%s cm</string>
+    <string name="format_surface">%s cm²</string>
+    <string name="format_currency">%s $</string>
 
     <!-- Fragments labels -->
     <string name="fragment_pizzas_list_label">Pizzas List</string>
@@ -34,9 +39,11 @@
     <string name="fragment_pizza_details_price_label">Pizza price</string>
     <string name="fragment_pizza_details_slices_number_label">Slices number</string>
     <string name="fragment_pizza_details_consumers_number_label">Consumers number</string>
-    <string name="fragment_pizza_details_surface_label">Summary</string>
-    <string name="fragment_pizza_details_price_per_unit_label">Pizza price of one %s:</string>
-    <string name="fragment_pizza_details_price_per_consumer_label">Pizza price for consumer:</string>
+    <string name="fragment_pizza_details_summary_label">Summary</string>
+    <string name="fragment_pizza_details_summary_surface">Pizza surface: </string>
+    <string name="fragment_pizza_details_summary_price_per_unit">Price per %s: </string>
+    <string name="fragment_pizza_details_summary_price_per_slice">Price per slice: </string>
+    <string name="fragment_pizza_details_summary_price_per_consumer">Price per consumer: </string>
     <string name="fragment_pizza_details_save_button">Save pizza details</string>
     <string name="fragment_pizza_details_pizza_name_error">Pizza name can\'t be empty</string>
     <string name="fragment_pizza_details_pizza_diameter_error">Pizza diameter should be larger than 0</string>

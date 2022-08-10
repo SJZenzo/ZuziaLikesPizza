@@ -22,6 +22,7 @@
         android:id="@+id/fragment_pizzas_list_total_cost_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:format="@string/format_currency"
         android:imeOptions="actionNext"
         app:readonly="true"
         android:layout_marginBottom="@dimen/min_space"
@@ -44,7 +45,8 @@
         app:layout_constraintHorizontal_bias="0.72"
         app:layout_constraintStart_toStartOf="@+id/fragment_pizzas_list_add_pizza_floating_button"
         app:layout_constraintTop_toBottomOf="@+id/fragment_pizzas_list_total_cost_label"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.8"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/fragment_pizzas_list_add_pizza_floating_button"

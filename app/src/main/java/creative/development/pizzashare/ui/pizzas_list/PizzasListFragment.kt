@@ -57,7 +57,7 @@ class PizzasListFragment : BaseFragment<FragmentPizzasListBinding, PizzasListVie
         countedTotalCostEvent.observe(viewLifecycleOwner) { totalCost ->
             binding.fragmentPizzasListTotalCostLabel.apply {
                 addOnInflatedListener {
-                    editText?.setText("${totalCost.roundToPlaces(2)}$priceCurrency")
+                    editText?.setText(totalCost.roundToPlaces(2))
                 }
             }
         }

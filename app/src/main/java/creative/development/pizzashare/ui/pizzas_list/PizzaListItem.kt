@@ -7,6 +7,8 @@ import creative.development.pizzashare.R
 import creative.development.pizzashare.data.holder.PizzasListItemClickHolder
 import creative.development.pizzashare.data.model.Pizza
 import creative.development.pizzashare.databinding.ItemPizzasListBinding
+import creative.development.pizzashare.utils.extensions.getCurrencyFormat
+import creative.development.pizzashare.utils.extensions.getSurfaceFormat
 import creative.development.pizzashare.utils.extensions.roundToPlaces
 
 class PizzaListItem(
@@ -19,20 +21,22 @@ class PizzaListItem(
 
     @SuppressLint("SetTextI18n")
     override fun bind(binding: ItemPizzasListBinding, position: Int) {
-        binding.itemPizzasListNameLabel.text = pizza.name
-        binding.itemPizzasListDiameterLabel.text =
-            "${pizza.diameter.roundToPlaces(2)}${binding.root.context.getString(R.string.config_unit_name)}"
-        binding.itemPizzasListPriceLabel.text =
-            "${pizza.price.roundToPlaces(2)}${binding.root.context.getString(R.string.config_price_currency)}"
-        binding.itemPizzasListConsumersNumberLabel.text =
-            "${pizza.consumersNumber}"
-        binding.itemPizzasListConsumersNumberLabelSmallScreens.text =
-            "${pizza.consumersNumber}"
-        binding.root.setOnClickListener {
-            clickListener(PizzasListItemClickHolder(position, pizza))
-        }
-        binding.itemPizzasListRemoveButton.setOnClickListener {
-            removeListener(position)
+        with(binding) {
+            itemPizzasListNameLabel.text = pizza.name
+            itemPizzasListDiameterLabel.text =
+                pizza.diameter.roundToPlaces(2).getSurfaceFormat(root.context)
+            itemPizzasListPriceLabel.text =
+                pizza.price.roundToPlaces(2).getCurrencyFormat(root.context)
+            itemPizzasListConsumersNumberLabel.text =
+                "${pizza.consumersNumber}"
+            itemPizzasListConsumersNumberLabelSmallScreens.text =
+                "${pizza.consumersNumber}"
+            root.setOnClickListener {
+                clickListener(PizzasListItemClickHolder(position, pizza))
+            }
+            itemPizzasListRemoveButton.setOnClickListener {
+                removeListener(position)
+            }
         }
     }
 

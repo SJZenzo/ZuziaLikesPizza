@@ -26,10 +26,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fontFamily="@font/kalam"
             android:paddingTop="@dimen/input_padding_top"
-            android:paddingBottom="@dimen/smaller_space"
+            android:paddingBottom="@dimen/input_padding_bottom"
             android:textColor="@color/mahogany_for_all_states"
             android:textSize="@dimen/big_font"
             tools:text="@string/tools_input_text_value" />

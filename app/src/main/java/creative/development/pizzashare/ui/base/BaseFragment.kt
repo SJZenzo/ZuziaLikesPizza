@@ -7,16 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import creative.development.pizzashare.R
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
     abstract val viewModel: VM
     protected lateinit var binding: VB
         private set
-
-    protected val priceCurrency get() = context?.getString(R.string.config_price_currency) ?: ""
-    protected val unitName get() = context?.getString(R.string.config_unit_name) ?: ""
 
     abstract fun onBind(
         layoutInflater: LayoutInflater,

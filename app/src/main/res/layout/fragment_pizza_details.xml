@@ -22,6 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/bigger_space"
+                android:layout_marginTop="@dimen/bigger_space"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_error_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +43,7 @@
                 <creative.development.pizzashare.utils.view.InputView
                     android:id="@+id/fragment_pizza_details_pizza_diameter_input"
                     android:layout_width="0dp"
+                    app:format="@string/format_length"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/small_space"
                     android:layout_marginEnd="@dimen/min_space"
@@ -55,6 +57,7 @@
                 <creative.development.pizzashare.utils.view.InputView
                     android:id="@+id/fragment_pizza_details_pizza_price_input"
                     android:layout_width="0dp"
+                    app:format="@string/format_currency"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/min_space"
                     android:layout_marginTop="@dimen/small_space"
@@ -97,44 +100,139 @@
                 android:id="@+id/fragment_pizza_details_error_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small_space"
                 android:layout_marginTop="@dimen/small_space"
                 android:fontFamily="@font/kalam"
-                android:layout_marginHorizontal="40dp"
                 android:textColor="@color/error"
                 android:textSize="@dimen/small_font"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_summary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_summary_container"
+                app:layout_constraintEnd_toEndOf="@+id/fragment_pizza_details_container"
+                app:layout_constraintStart_toStartOf="@+id/fragment_pizza_details_container"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_container"
                 tools:ignore="TextContrastCheck"
                 tools:text="@string/fragment_pizza_details_pizza_name_error"
                 tools:visibility="visible" />
 
-            <creative.development.pizzashare.utils.view.InputView
-                android:id="@+id/fragment_pizza_details_summary"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragment_pizza_details_summary_container"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/bigger_space"
                 android:layout_marginTop="@dimen/bigger_space"
-                android:label="@string/fragment_pizza_details_surface_label"
+                android:layout_marginHorizontal="@dimen/bigger_space"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_save_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_error_label"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:readonly="true" />
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <creative.development.pizzashare.utils.view.InputView
+                    android:id="@+id/fragment_pizza_details_summary"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:multiline="true"
+                    android:label="@string/fragment_pizza_details_summary_label"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:readonly="true" />
+
+                <TextView
+                    android:id="@+id/fragment_pizza_details_summary_surface_label"
+                    style="@style/Summary"
+                    android:layout_marginTop="@dimen/bigger_space"
+                    android:layout_marginStart="@dimen/normal_font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_pizza_details_summary_surface"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_pizza_details_summary"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fragment_pizza_details_summary_surface_value"
+                    style="@style/Summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/normal_font"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_pizza_details_summary_surface_label"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_pizza_details_summary_surface_label"
+                    tools:text="@string/tools_pizza_details_summary_surface" />
+
+                <TextView
+                    android:id="@+id/fragment_pizza_details_summary_price_per_unit_label"
+                    style="@style/Summary"
+                    android:layout_marginTop="@dimen/small_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/fragment_pizza_details_summary_price_per_unit"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_pizza_details_summary_surface_label"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_summary_surface_label" />
+
+                <TextView
+                    android:id="@+id/fragment_pizza_details_summary_price_per_unit_value"
+                    style="@style/Summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_pizza_details_summary_surface_value"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_pizza_details_summary_price_per_unit_label"
+                    tools:text="@string/tools_pizza_details_summary_price_per_unit" />
+
+                <TextView
+                    android:id="@+id/fragment_pizza_details_summary_price_per_slice_label"
+                    style="@style/Summary"
+                    android:layout_marginTop="@dimen/small_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_pizza_details_summary_price_per_slice"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_pizza_details_summary_price_per_unit_label"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_summary_price_per_unit_label" />
+
+                <TextView
+                    android:id="@+id/fragment_pizza_details_summary_price_per_slice_value"
+                    style="@style/Summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_pizza_details_summary_price_per_unit_value"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_pizza_details_summary_price_per_slice_label"
+                    tools:text="@string/tools_pizza_details_summary_price_per_slice" />
+
+                <TextView
+                    android:id="@+id/fragment_pizza_details_summary_price_per_consumer_label"
+                    style="@style/Summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_space"
+                    android:layout_marginBottom="@dimen/smaller_space"
+                    android:text="@string/fragment_pizza_details_summary_price_per_consumer"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_pizza_details_summary_price_per_slice_label"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_summary_price_per_slice_label" />
+
+                <TextView
+                    android:id="@+id/fragment_pizza_details_summary_price_per_consumer_value"
+                    style="@style/Summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_pizza_details_summary_price_per_slice_value"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_pizza_details_summary_price_per_consumer_label"
+                    tools:text="@string/tools_pizza_details_summary_price_per_consumer" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
                 android:layout_width="@dimen/pizza_slice_image_width"
                 android:layout_height="@dimen/pizza_slice_image_height"
+                android:translationY="@dimen/fragment_pizza_details_pizza_slice_image_offset_top"
                 android:src="@drawable/pizza_slice_image"
-                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_summary"
-                app:layout_constraintEnd_toEndOf="@+id/fragment_pizza_details_summary"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_summary_container"
+                app:layout_constraintEnd_toEndOf="@+id/fragment_pizza_details_summary_container"
                 app:layout_constraintHorizontal_bias="0.82"
                 app:layout_constraintStart_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_summary"
-                app:layout_constraintVertical_bias="0.75" />
+                app:layout_constraintTop_toTopOf="@+id/fragment_pizza_details_summary_container"
+                tools:ignore="ContentDescription" />
 
             <Button
                 android:id="@+id/fragment_pizza_details_save_button"
@@ -146,10 +244,11 @@
                 android:textSize="@dimen/big_font"
                 app:iconGravity="textStart"
                 android:text="@string/fragment_pizza_details_save_button"
+                android:layout_marginBottom="@dimen/bigger_space"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_summary" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_summary_container" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,9 +11,7 @@ import creative.development.pizzashare.R
 import creative.development.pizzashare.data.model.Pizza
 import creative.development.pizzashare.databinding.FragmentPizzaDetailsBinding
 import creative.development.pizzashare.ui.base.BaseFragment
-import creative.development.pizzashare.utils.extensions.doAfterChildrenInflated
-import creative.development.pizzashare.utils.extensions.isZero
-import creative.development.pizzashare.utils.extensions.roundToPlaces
+import creative.development.pizzashare.utils.extensions.*
 import creative.development.pizzashare.utils.view.InputView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -60,8 +58,8 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
     private fun FragmentPizzaDetailsBinding.generatePizza(): Pizza {
         return viewModel.generatePizza(
             fragmentPizzaDetailsPizzaNameInput.text,
-            fragmentPizzaDetailsPizzaDiameterInput.text.toFloatOrNull(),
-            fragmentPizzaDetailsPizzaPriceInput.text.toFloatOrNull(),
+            fragmentPizzaDetailsPizzaDiameterInput.unformattedText.toFloatOrNull(),
+            fragmentPizzaDetailsPizzaPriceInput.unformattedText.toFloatOrNull(),
             fragmentPizzaDetailsPizzaSlicesNumberInput.text.toIntOrNull(),
             fragmentPizzaDetailsPizzaConsumersNumberInput.text.toIntOrNull()
         )
@@ -81,15 +79,14 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
             calculatingState = PizzaDetailsViewModel.CalculatingState.CALCULATING
         }
         val pizza = pizzaFromRefill ?: generatePizza()
-        fragmentPizzaDetailsSummary.editText?.setText(
-            "${pizza.surface.roundToPlaces(2)}$unitName"
-        )
-//        fragmentPizzaDetailsPricePerUnitInput.editText?.setText(
-//            "${pizza.pricePerUnit.roundToPlaces(2)}$priceCurrency"
-//        )
-//        fragmentPizzaDetailsPricePerConsumerInput.editText?.setText(
-//            "${pizza.pricePerConsumer.roundToPlaces(2)}$priceCurrency"
-//        )
+        fragmentPizzaDetailsSummarySurfaceValue.text =
+            pizza.surface.roundToPlaces(2).getSurfaceFormat(root.context)
+        fragmentPizzaDetailsSummaryPricePerUnitValue.text =
+            pizza.pricePerUnit.roundToPlaces(2).getCurrencyFormat(root.context)
+        fragmentPizzaDetailsSummaryPricePerSliceValue.text =
+            pizza.pricePerSlice.roundToPlaces(2).getCurrencyFormat(root.context)
+        fragmentPizzaDetailsSummaryPricePerConsumerValue.text =
+            pizza.pricePerConsumer.roundToPlaces(2).getCurrencyFormat(root.context)
         viewModel.calculatingState = PizzaDetailsViewModel.CalculatingState.DEFAULT
     }
 
@@ -112,7 +109,7 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
                 else -> text
             }.let { parsedText ->
                 if (formatTo2Decimal) {
-                    parsedText.toDoubleOrNull()?.roundToPlaces(2) ?: parsedText
+                    parsedText.doubleValue?.roundToPlaces(2) ?: parsedText
                 } else parsedText
             }
         }
@@ -146,12 +143,10 @@ class PizzaDetailsFragment : BaseFragment<FragmentPizzaDetailsBinding, PizzaDeta
     }
 
     private fun FragmentPizzaDetailsBinding.subscribe() {
-//        fragmentPizzaDetailsPricePerUnitInput.label =
-//            context?.getString(
-//                R.string.fragment_pizza_details_price_per_unit_label
-//            )?.format(
-//                context?.getString(R.string.config_unit_name) ?: ""
-//            ) ?: ""
+        fragmentPizzaDetailsSummaryPricePerUnitLabel.text =
+            context?.getString(
+                R.string.fragment_pizza_details_summary_price_per_unit
+            )?.format("".getSurfaceFormat(root.context).trim()) ?: ""
         fragmentPizzaDetailsPizzaNameInput.apply {
             addOnStateChangeListener { isValid ->
                 onInputStateChangeListener(

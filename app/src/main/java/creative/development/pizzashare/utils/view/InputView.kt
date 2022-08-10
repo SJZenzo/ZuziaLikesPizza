@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -27,17 +28,23 @@ class InputView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LazyView<ViewInputBinding>(context, attrs, defStyleAttr) {
 
+    private data class FormattedText(var value: String, var wasApply: Boolean)
+
     override val defaultLazyHeight: Int
         get() = resources.getDimensionPixelOffset(R.dimen.input_lazy_height)
 
     override val layoutResId: Int
         get() = R.layout.view_input
 
+    var unformattedText: String = ""
+        private set
+
     var text: String
         get() = editText?.text?.toString() ?: ""
         set(v) {
             editText?.setText(v)
         }
+
     val editText get() = if (isInflated) binding.inputView.editText else null
 
     var isValidate: Boolean = true
@@ -51,11 +58,13 @@ class InputView @JvmOverloads constructor(
     var imeOptions: Int by Updatable.UpdatableProperty.lateInit()
     var readonly: Boolean by Updatable.UpdatableProperty.lateInit()
     var required: Boolean by Updatable.UpdatableProperty.lateInit()
+    var multiline: Boolean by Updatable.UpdatableProperty.lateInit()
+    var format: String? by Updatable.UpdatableProperty.lateInit()
 
-    private var initialText: String by Updatable.UpdatableProperty.lateInit()
     private var isErrorShown: Boolean by Updatable.UpdatableProperty(false)
-
     private var onStateChangeListeners: MutableList<(isValid: Boolean) -> Unit> = mutableListOf()
+    private val formattedText = FormattedText("", true)
+    private var initialText: String = ""
 
     init {
         attrs.getFromStyleable(
@@ -71,22 +80,38 @@ class InputView @JvmOverloads constructor(
 
     override fun ViewInputBinding.subscribe() {
         editText?.apply {
-            setText(initialText)
-            doAfterTextChanged {
-                if (!isValidate) validate()
+            doAfterTextChanged { editable ->
+                if (formattedText.wasApply && formattedText.value != editable?.toString()) {
+                    unformattedText = editable?.toString() ?: ""
+                    if (!hasFocus()) {
+                        formattedText.value = format?.let { format ->
+                            format.format(unformattedText)
+                        } ?: unformattedText
+                        formattedText.wasApply = false
+                        setText(formattedText.value)
+                    }
+                    if (!isValidate) validate()
+                } else {
+                    formattedText.wasApply = true
+                }
             }
+            setText(initialText)
             setOnFocusChangeListener { _, hasFocus ->
-                parser?.invoke(this@InputView.text, hasFocus)?.let { text ->
-                    setText(text)
+                var newText = unformattedText
+                parser?.invoke(unformattedText, hasFocus)?.let { text ->
+                    newText = text
                 }
                 if (!hasFocus) {
-                    validate()
+                    validate(newText)
                 }
+                setText(newText)
             }
         }
     }
 
     override fun ViewInputBinding.update() {
+        root.changHeightByMultilineParameter(multiline)
+        inputView.changHeightByMultilineParameter(multiline)
         val backgroundColor = ContextCompat.getColor(
             context,
             if (readonly) R.color.background
@@ -98,7 +123,9 @@ class InputView @JvmOverloads constructor(
             else R.color.error_background
         )
         editText?.apply {
-            inputType = this@InputView.inputType
+            inputType = this@InputView.inputType.let {
+                if (multiline) (it or InputType.TYPE_TEXT_FLAG_MULTI_LINE) else it
+            }
             imeOptions = this@InputView.imeOptions
             isEnabled = !readonly
         }
@@ -113,7 +140,7 @@ class InputView @JvmOverloads constructor(
         onStateChangeListeners.add(onStateChangeListener)
     }
 
-    fun removeOnInflatedListener(onStateChangeListener: (isValid: Boolean) -> Unit) {
+    fun removeOnStateChangeListener(onStateChangeListener: (isValid: Boolean) -> Unit) {
         onStateChangeListeners.remove(onStateChangeListener)
     }
 
@@ -125,14 +152,23 @@ class InputView @JvmOverloads constructor(
         isErrorShown = false
     }
 
-    fun validate() {
-        val validatorResult = validator?.invoke(text) ?: true
-        isValidate = validatorResult && (!required || text.isNotEmpty())
+    fun validate(validationText: String = unformattedText) {
+        val validatorResult = validator?.invoke(validationText) ?: true
+        isValidate = validatorResult && (!required || validationText.isNotEmpty())
         onStateChangeListeners.forEach { onStateChangeListener ->
             onStateChangeListener.invoke(isValidate)
         }
         if (isValidate) hideError()
         else showError()
+    }
+
+    private fun View.changHeightByMultilineParameter(isMultiline: Boolean) {
+        val newHeight =
+            if (isMultiline) LayoutParams.MATCH_PARENT
+            else LayoutParams.WRAP_CONTENT
+        layoutParams = layoutParams?.apply {
+            height = newHeight
+        } ?: LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, newHeight)
     }
 
     private fun initAttrs(typedArray: TypedArray?) {
@@ -148,5 +184,7 @@ class InputView @JvmOverloads constructor(
         )
         readonly = typedArray.getBooleanOrDef(R.styleable.InputView_readonly, false)
         required = typedArray.getBooleanOrDef(R.styleable.InputView_android_required, false)
+        multiline = typedArray.getBooleanOrDef(R.styleable.InputView_multiline, false)
+        format = typedArray?.getString(R.styleable.InputView_format)
     }
 }

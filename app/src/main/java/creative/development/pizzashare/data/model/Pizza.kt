@@ -18,6 +18,7 @@ data class Pizza constructor(
 
     val surface get() = Math.PI * (diameter / 2).pow(2)
     val pricePerUnit get() = if (surface > 0) price / surface else 0.0
+    val pricePerSlice get() = if (slices > 0) price / slices.toDouble() else 0.0
     val pricePerConsumer
         get() = if (consumersNumber > 0) price / consumersNumber.toDouble() else 0.0
 }
