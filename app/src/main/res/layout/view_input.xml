@@ -10,17 +10,18 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/input_text_color"
-        app:boxBackgroundColor="@color/input_background_color"
-        app:boxStrokeColor="@color/input_border_color"
-        app:boxStrokeWidth="@dimen/input_border_width"
+        android:textColorHint="@color/mahogany_for_all_states"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/mahogany_for_all_states"
+        app:boxStrokeWidth="1dp"
+        android:translationZ="@dimen/input_lazy_height"
         app:expandedHintEnabled="false"
         app:hintTextAppearance="@style/LabelTextAppearance"
-        app:hintTextColor="@color/input_text_color"
+        app:hintTextColor="@color/mahogany_for_all_states"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fragment_pizzas_list_add_pizza_floating_button"
         app:layout_constraintStart_toStartOf="parent"
-        tools:hint="@string/input_text_label"
+        tools:hint="@string/tools_input_text_label"
         tools:layout_gravity="center">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -28,10 +29,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/kalam"
             android:paddingTop="@dimen/input_padding_top"
-            android:paddingBottom="@dimen/input_padding_bottom"
-            android:textColor="@color/input_text_color"
-            android:textSize="@dimen/input_text_size"
-            tools:text="@string/input_text_value" />
+            android:paddingBottom="@dimen/smaller_space"
+            android:textColor="@color/mahogany_for_all_states"
+            android:textSize="@dimen/big_font"
+            tools:text="@string/tools_input_text_value" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,10 +42,10 @@
         tools:visibility="visible"
         android:background="@color/transparent"
         android:layout_gravity="center|end"
-        android:layout_marginTop="@dimen/input_error_icon_margin_top"
-        android:layout_marginEnd="@dimen/input_error_icon_margin_end"
-        android:layout_width="@dimen/input_error_icon_size"
-        android:layout_height="@dimen/input_error_icon_size"
+        android:layout_marginTop="@dimen/min_space"
+        android:layout_marginEnd="@dimen/smaller_space"
+        android:layout_width="@dimen/middle_space"
+        android:layout_height="@dimen/middle_space"
         android:src="@drawable/ic_error"
         tools:ignore="ContentDescription" />
 </FrameLayout>

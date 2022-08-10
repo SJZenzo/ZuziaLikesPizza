@@ -26,6 +26,8 @@ class PizzaListItem(
             "${pizza.price.roundToPlaces(2)}${binding.root.context.getString(R.string.config_price_currency)}"
         binding.itemPizzasListConsumersNumberLabel.text =
             "${pizza.consumersNumber}"
+        binding.itemPizzasListConsumersNumberLabelSmallScreens.text =
+            "${pizza.consumersNumber}"
         binding.root.setOnClickListener {
             clickListener(PizzasListItemClickHolder(position, pizza))
         }

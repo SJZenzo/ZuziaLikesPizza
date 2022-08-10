@@ -90,12 +90,12 @@ class InputView @JvmOverloads constructor(
         val backgroundColor = ContextCompat.getColor(
             context,
             if (readonly) R.color.background
-            else R.color.input_background_color
+            else R.color.white
         )
         val errorBackgroundColor = ContextCompat.getColor(
             context,
             if (readonly) R.color.background
-            else R.color.input_error_background
+            else R.color.error_background
         )
         editText?.apply {
             inputType = this@InputView.inputType

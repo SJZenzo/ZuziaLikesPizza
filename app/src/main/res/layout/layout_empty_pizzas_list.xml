@@ -15,8 +15,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/layout_empty_pizzas_list_wood_lab_start_pointer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/layout_empty_pizzas_list_wood_lab_start_pointer"
-        tools:ignore="ContentDescription"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/layout_empty_pizzas_list_wood_lab_middle"

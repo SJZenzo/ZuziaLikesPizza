@@ -42,7 +42,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
         }.apply {
             measuredWidth.takeIf { it > 0 }?.let { width ->
                 val titleMargin = resources.getDimensionPixelOffset(
-                    R.dimen.activity_splash_app_title_margin
+                    R.dimen.middle_space
                 ).toFloat()
                 val splashBackgroundAlpha = ResourcesCompat.getFloat(
                     resources,

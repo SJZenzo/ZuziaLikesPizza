@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="visibility_visible">0</integer>
+    <integer name="visibility_invisible">1</integer>
+    <integer name="visibility_gone">2</integer>
+
+    <integer name="pizza_slice_visibility">@integer/visibility_gone</integer>
+    <integer name="consumers_numbers_visibility">@integer/visibility_gone</integer>
+    <integer name="consumers_numbers_for_small_screens_visibility">@integer/visibility_visible
+    </integer>
+</resources>

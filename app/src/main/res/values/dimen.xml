@@ -3,26 +3,37 @@
 
     <!--  Specials  -->
     <dimen name="wood_lap_overlap">4dp</dimen>
+    <dimen name="pizza_slice_image_width">@dimen/_48sdp</dimen>
+    <dimen name="pizza_slice_image_height">@dimen/_24sdp</dimen>
+
+    <!--  View properties -->
+    <dimen name="input_padding_top">@dimen/_16sdp</dimen>
+    <dimen name="input_label_text_size">@dimen/_13ssp</dimen>
+    <dimen name="input_lazy_height">@dimen/_52sdp</dimen>
 
     <!--  Spacing  -->
-    <dimen name="min_space">4dp</dimen>
-    <dimen name="small_space">8dp</dimen>
-    <dimen name="smaller_space">16dp</dimen>
-    <dimen name="middle_space">24dp</dimen>
-    <dimen name="bigger_space">32dp</dimen>
-    <dimen name="big_space">48dp</dimen>
+    <dimen name="min_space">@dimen/_3sdp</dimen>
+    <dimen name="small_space">@dimen/_6sdp</dimen>
+    <dimen name="smaller_space">@dimen/_12sdp</dimen>
+    <dimen name="middle_space">@dimen/_19sdp</dimen>
+    <dimen name="bigger_space">@dimen/_25sdp</dimen>
+    <dimen name="big_space">@dimen/_37sdp</dimen>
 
     <!--  Font sizes  -->
-    <dimen name="small_font">14sp</dimen>
-    <dimen name="normal_font">1dp</dimen>
-    <dimen name="big_font">18sp</dimen>
+    <dimen name="small_font">@dimen/_13ssp</dimen>
+    <dimen name="normal_font">@dimen/_14ssp</dimen>
+    <dimen name="big_font">@dimen/_16ssp</dimen>
+
+    <!--  Icon sizes  -->
+    <dimen name="small_icon">@dimen/_12sdp</dimen>
+    <dimen name="middle_icon">@dimen/_16sdp</dimen>
+    <dimen name="big_icon">@dimen/_19sdp</dimen>
 
     <!--  Splash screen  -->
-    <dimen name="activity_splash_title_text_size">96sp</dimen>
-    <dimen name="activity_splash_app_title_margin">24dp</dimen>
+    <dimen name="activity_splash_title_text_size">@dimen/_71ssp</dimen>
     <item name="activity_splash_background_alpha" type="dimen" format="float">0.3f</item>
 
-    <!-- Pizza details screen -->
-    <dimen name="fragment_pizza_details_error_label_text_size">16sp</dimen>
+    <!--  Pizzas list item  -->
+    <dimen name="item_pizzas_list_price_label_padding">@dimen/_16sdp</dimen>
 
 </resources>

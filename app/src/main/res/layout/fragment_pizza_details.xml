@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Fragment"
+    android:padding="0dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,6 +21,7 @@
                 android:id="@+id/fragment_pizza_details_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/bigger_space"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_error_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,11 +97,11 @@
                 android:id="@+id/fragment_pizza_details_error_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/small_space"
                 android:layout_marginTop="@dimen/small_space"
                 android:fontFamily="@font/kalam"
+                android:layout_marginHorizontal="40dp"
                 android:textColor="@color/error"
-                android:textSize="@dimen/fragment_pizza_details_error_label_text_size"
+                android:textSize="@dimen/small_font"
                 android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_summary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -113,6 +115,7 @@
                 android:id="@+id/fragment_pizza_details_summary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/bigger_space"
                 android:layout_marginTop="@dimen/bigger_space"
                 android:label="@string/fragment_pizza_details_surface_label"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_save_button"
@@ -122,12 +125,26 @@
                 app:layout_constraintVertical_chainStyle="packed"
                 app:readonly="true" />
 
+            <ImageView
+                android:layout_width="@dimen/pizza_slice_image_width"
+                android:layout_height="@dimen/pizza_slice_image_height"
+                android:src="@drawable/pizza_slice_image"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_pizza_details_summary"
+                app:layout_constraintEnd_toEndOf="@+id/fragment_pizza_details_summary"
+                app:layout_constraintHorizontal_bias="0.82"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_pizza_details_summary"
+                app:layout_constraintVertical_bias="0.75" />
+
             <Button
                 android:id="@+id/fragment_pizza_details_save_button"
                 style="@style/Button"
+                android:layout_marginHorizontal="@dimen/bigger_space"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/big_space"
+                android:textSize="@dimen/big_font"
+                app:iconGravity="textStart"
                 android:text="@string/fragment_pizza_details_save_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

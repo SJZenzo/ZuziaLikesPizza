@@ -10,6 +10,7 @@
     <color name="transparent">#00000000</color>
 
     <!-- Main scheme -->
+    <color name="dark_brown">#2D1707</color>
     <color name="mahogany">#B73D00</color>
     <color name="yellow_orange">#F7AD45</color>
     <color name="papaya_whip">#FFF1D7</color>

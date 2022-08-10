@@ -101,16 +101,20 @@
         style="@style/Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/middle_space"
+        android:visibility="@integer/consumers_numbers_visibility"
+        android:layout_marginStart="@dimen/item_pizzas_list_price_label_padding"
         app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_diameter_label"
+        app:layout_constraintEnd_toStartOf="@+id/item_pizzas_list_consumers_number_icon"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_price_label"
         app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_diameter_label"
         tools:text="@string/tools_pizza_consumers_number" />
 
     <ImageView
         android:id="@+id/item_pizzas_list_consumers_number_icon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="@dimen/small_icon"
+        android:layout_height="@dimen/small_icon"
+        android:visibility="@integer/consumers_numbers_visibility"
         android:layout_marginStart="@dimen/min_space"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_consumer"
@@ -121,16 +125,47 @@
 
     <ImageView
         android:id="@+id/item_pizzas_list_remove_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/middle_icon"
+        android:layout_height="@dimen/middle_icon"
         android:layout_marginTop="11dp"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_remove"
         app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_wood_lab_end"
         app:layout_constraintEnd_toEndOf="@+id/item_pizzas_list_wood_lab_end"
-
         app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_wood_lab_end_image_pointer"
         app:layout_constraintTop_toBottomOf="@+id/item_pizzas_list_wood_lab_end_image_pointer"
+        tools:ignore="ContentDescription" />
+
+
+    <TextView
+        android:id="@+id/item_pizzas_list_consumers_number_label_small_screens"
+        style="@style/Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dark_brown"
+        android:visibility="@integer/consumers_numbers_for_small_screens_visibility"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_wood_lab_end"
+        app:layout_constraintBottom_toTopOf="@+id/item_pizzas_list_wood_lab_end_image_pointer"
+        app:layout_constraintEnd_toEndOf="@+id/item_pizzas_list_wood_lab_end"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_wood_lab_end_image_pointer"
+        app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_wood_lab_end"
+        tools:text="@string/tools_pizza_consumers_number" />
+
+    <ImageView
+        android:id="@+id/item_pizzas_list_consumers_number_icon_small_screens"
+        android:layout_width="@dimen/small_icon"
+        android:layout_height="@dimen/small_icon"
+        android:layout_marginStart="@dimen/min_space"
+        android:adjustViewBounds="true"
+        android:visibility="@integer/consumers_numbers_for_small_screens_visibility"
+        tools:visibility="visible"
+        android:src="@drawable/ic_consumer"
+        app:tint="@color/dark_brown"
+        app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_consumers_number_label_small_screens"
+        app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_consumers_number_label_small_screens"
+        app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_consumers_number_label_small_screens"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
