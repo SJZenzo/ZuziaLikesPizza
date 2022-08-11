@@ -6,6 +6,48 @@
         <item name="android:background">@color/background</item>
     </style>
 
+    <style name="Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered">
+        <item name="materialAlertDialogTitlePanelStyle">@style/DialogPanel</item>
+        <item name="dialogPreferredPadding">@dimen/dialog_padding_horizontal</item>
+        <item name="colorSurface">@color/error_background</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/DialogTitle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/DialogContent</item>
+        <item name="buttonBarPositiveButtonStyle">@style/DialogAgreeButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DialogDenyButton</item>
+    </style>
+
+    <style name="DialogPanel" parent="MaterialAlertDialog.Material3.Title.Panel">
+        <item name="android:paddingTop">@dimen/dialog_padding_top</item>
+    </style>
+
+    <style name="DialogTitle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:lineSpacingMultiplier">2</item>
+        <item name="android:textAppearance">@style/DialogTitleTextAppearance</item>
+    </style>
+
+    <style name="DialogContent" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textAppearance">@style/DialogContentTextAppearance</item>
+    </style>
+
+    <style name="DialogTitleTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/big_font</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="DialogContentTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/small_font</item>
+    </style>
+
+    <style name="DialogAgreeButton" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/mahogany</item>
+    </style>
+
+    <style name="DialogDenyButton" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/maximum_green</item>
+    </style>
+
     <style name="LabelTextAppearance" parent="@android:style/TextAppearance">
         <item name="android:textSize">@dimen/input_label_text_size</item>
         <item name="android:textColor">@color/mahogany_for_all_states</item>
@@ -18,7 +60,7 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
     </style>
 
-    <style name="Button" parent="@style/Widget.Material3.Button.OutlinedButton.Icon">
+    <style name="Button" parent="Widget.Material3.Button.OutlinedButton.Icon">
         <item name="android:paddingTop">@dimen/input_button_top</item>
         <item name="android:paddingBottom">@dimen/input_button_bottom</item>
         <item name="backgroundTint">@color/maximum_green_for_all_states</item>

@@ -46,9 +46,10 @@
         android:id="@+id/item_pizzas_list_wood_lab_start_pointer"
         android:layout_width="1dp"
         android:layout_height="1dp"
-        android:layout_marginEnd="@dimen/wood_lap_overlap"
         app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_wood_lab_start"
         app:layout_constraintEnd_toEndOf="@+id/item_pizzas_list_wood_lab_start"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@+id/item_pizzas_list_wood_lab_start"
         app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_wood_lab_start" />
 
     <View
@@ -63,6 +64,7 @@
     <TextView
         android:id="@+id/item_pizzas_list_name_label"
         style="@style/Title"
+        android:layout_marginStart="@dimen/item_pizzas_list_name_label_padding"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/min_space"
@@ -70,6 +72,7 @@
         android:lines="1"
         app:layout_constraintBottom_toTopOf="@+id/item_pizzas_list_diameter_label"
         app:layout_constraintEnd_toStartOf="@+id/item_pizzas_list_wood_lab_end_image_pointer"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="@+id/item_pizzas_list_wood_lab_start_pointer"
         app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_wood_lab_middle"
         app:layout_constraintVertical_chainStyle="packed"
@@ -80,8 +83,8 @@
         style="@style/Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/item_pizzas_list_wood_lab_start_pointer"
         app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_wood_lab_middle"
-        app:layout_constraintStart_toStartOf="@+id/item_pizzas_list_name_label"
         app:layout_constraintTop_toBottomOf="@+id/item_pizzas_list_name_label"
         tools:text="@string/tools_pizza_diameter" />
 
@@ -90,7 +93,7 @@
         style="@style/Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_space"
+        android:layout_marginStart="@dimen/smaller_space"
         app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_diameter_label"
         app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_diameter_label"
         app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_diameter_label"
@@ -101,25 +104,24 @@
         style="@style/Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/min_space"
         android:visibility="@integer/consumers_numbers_visibility"
-        android:layout_marginStart="@dimen/item_pizzas_list_price_label_padding"
-        app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_diameter_label"
+        app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_consumers_number_icon"
         app:layout_constraintEnd_toStartOf="@+id/item_pizzas_list_consumers_number_icon"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_price_label"
-        app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_diameter_label"
+        app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_consumers_number_icon"
         tools:text="@string/tools_pizza_consumers_number" />
 
     <ImageView
         android:id="@+id/item_pizzas_list_consumers_number_icon"
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
-        android:visibility="@integer/consumers_numbers_visibility"
-        android:layout_marginStart="@dimen/min_space"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_consumer"
+        android:visibility="@integer/consumers_numbers_visibility"
         app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_diameter_label"
-        app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_consumers_number_label"
+        app:layout_constraintEnd_toStartOf="@+id/item_pizzas_list_wood_lab_end"
+        app:layout_constraintStart_toStartOf="@+id/item_pizzas_list_wood_lab_end"
         app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_diameter_label"
         tools:ignore="ContentDescription" />
 
@@ -135,7 +137,6 @@
         app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_wood_lab_end_image_pointer"
         app:layout_constraintTop_toBottomOf="@+id/item_pizzas_list_wood_lab_end_image_pointer"
         tools:ignore="ContentDescription" />
-
 
     <TextView
         android:id="@+id/item_pizzas_list_consumers_number_label_small_screens"

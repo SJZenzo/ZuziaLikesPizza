@@ -7,6 +7,8 @@
     <dimen name="pizza_slice_image_height">@dimen/_24sdp</dimen>
 
     <!--  View properties -->
+    <dimen name="dialog_padding_top">22dp</dimen>
+    <dimen name="dialog_padding_horizontal">28dp</dimen>
     <dimen name="input_padding_top">@dimen/_12sdp</dimen>
     <dimen name="input_padding_bottom">@dimen/_9sdp</dimen>
     <dimen name="input_button_top">@dimen/_12sdp</dimen>
@@ -37,7 +39,7 @@
     <item name="activity_splash_background_alpha" type="dimen" format="float">0.3f</item>
 
     <!--  Pizzas list item  -->
-    <dimen name="item_pizzas_list_price_label_padding">@dimen/_16sdp</dimen>
+    <dimen name="item_pizzas_list_name_label_padding">@dimen/_8sdp</dimen>
 
     <!--  Pizza details item  -->
     <dimen name="fragment_pizza_details_pizza_slice_image_offset_top">@dimen/_5sdp</dimen>

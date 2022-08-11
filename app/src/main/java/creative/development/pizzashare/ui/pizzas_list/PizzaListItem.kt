@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.View
 import com.xwray.groupie.viewbinding.BindableItem
 import creative.development.pizzashare.R
-import creative.development.pizzashare.data.holder.PizzasListItemClickHolder
+import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
 import creative.development.pizzashare.data.model.Pizza
 import creative.development.pizzashare.databinding.ItemPizzasListBinding
 import creative.development.pizzashare.utils.extensions.getCurrencyFormat
@@ -13,8 +13,8 @@ import creative.development.pizzashare.utils.extensions.roundToPlaces
 
 class PizzaListItem(
     private val pizza: Pizza,
-    private val clickListener: (PizzasListItemClickHolder) -> Unit,
-    private val removeListener: (Int) -> Unit
+    private val clickListener: (PizzasListItemDataHolder) -> Unit,
+    private val removeListener: (PizzasListItemDataHolder) -> Unit
 ) : BindableItem<ItemPizzasListBinding>() {
 
     override fun getLayout() = R.layout.item_pizzas_list
@@ -32,10 +32,10 @@ class PizzaListItem(
             itemPizzasListConsumersNumberLabelSmallScreens.text =
                 "${pizza.consumersNumber}"
             root.setOnClickListener {
-                clickListener(PizzasListItemClickHolder(position, pizza))
+                clickListener(PizzasListItemDataHolder(position, pizza))
             }
             itemPizzasListRemoveButton.setOnClickListener {
-                removeListener(position)
+                removeListener(PizzasListItemDataHolder(position, pizza))
             }
         }
     }

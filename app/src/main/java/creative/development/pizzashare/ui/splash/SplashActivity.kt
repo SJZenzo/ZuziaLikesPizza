@@ -8,7 +8,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import creative.development.pizzashare.R
-import creative.development.pizzashare.config.Consts
+import creative.development.pizzashare.consts.Consts
 import creative.development.pizzashare.databinding.ActivitySplashBinding
 import creative.development.pizzashare.ui.base.BaseActivity
 import creative.development.pizzashare.ui.main.MainActivity

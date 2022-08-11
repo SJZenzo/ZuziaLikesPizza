@@ -4,13 +4,13 @@ import android.content.Context
 import creative.development.pizzashare.R
 
 fun String.getCurrencyFormat(context: Context) =
-    context.getString(R.string.format_currency).format(this)
+    context.getString(R.string.format_currency, this)
 
 fun String.getLengthFormat(context: Context) =
-    context.getString(R.string.format_length).format(this)
+    context.getString(R.string.format_length, this)
 
 fun String.getSurfaceFormat(context: Context) =
-    context.getString(R.string.format_surface).format(this)
+    context.getString(R.string.format_surface, this)
 
 val String.doubleValue
     get() = replace(",", ".")
