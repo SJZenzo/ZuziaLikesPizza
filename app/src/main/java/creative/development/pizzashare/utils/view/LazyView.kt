@@ -3,6 +3,10 @@ package creative.development.pizzashare.utils.view
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.Path
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.PathShape
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +18,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.card.MaterialCardView
 import creative.development.pizzashare.R
 import creative.development.pizzashare.utils.extensions.*
 
 /**
  * LazyView for lazy inflating inherited views
+ * It's HiltView - all inherited views must be @AndroidEntryPoint
  */
 abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
     context: Context,
@@ -27,12 +31,8 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr), Updatable {
 
-    var lazyBackgroundColor: Int by Updatable.UpdatableProperty.lateInit()
-    var lazyBorderColor: Int by Updatable.UpdatableProperty.lateInit()
-    var lazyBorderWidth: Int by Updatable.UpdatableProperty.lateInit()
+    var lazyBackground: Drawable? by Updatable.UpdatableProperty.lateInit()
     var lazyHeight: Int by Updatable.UpdatableProperty.lateInit()
-    var lazyCornerRadius: Float by Updatable.UpdatableProperty.lateInit()
-    var lazyElevation: Float by Updatable.UpdatableProperty.lateInit()
     var lazyAlpha: Float by Updatable.UpdatableProperty.lateInit()
     var lazyLightAnimationDuration: Int by Updatable.UpdatableProperty.lateInit()
     var lazyLightAlpha: Float by Updatable.UpdatableProperty.lateInit()
@@ -45,43 +45,21 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
     protected lateinit var binding: VB
         private set
 
-    protected open val defaultLazyBackgroundColor
-        get() =
-            ContextCompat.getColor(context, R.color.lazy_background_color)
-    protected open val defaultLazyBorderColor
-        get() =
-            ContextCompat.getColor(context, R.color.lazy_border_color)
-    protected open val defaultLazyBorderWidth
-        get() =
-            resources.getDimensionPixelSize(R.dimen.lazy_border_width)
-    protected open val defaultLazyCornerRadius
-        get() =
-            resources.getDimension(R.dimen.lazy_corner_radius)
-    protected open val defaultLazyElevation
-        get() =
-            resources.getDimension(R.dimen.lazy_elevation)
+    protected open val defaultLazyBackground
+        get() = ContextCompat.getDrawable(context, R.drawable.bck_lazy_view)
     protected open val defaultLazyAlpha
-        get() =
-            ResourcesCompat.getFloat(resources, R.dimen.lazy_alpha)
+        get() = ResourcesCompat.getFloat(resources, R.dimen.lazy_view_alpha)
     protected open val defaultLazyLightAnimationDuration
-        get() =
-            resources.getInteger(R.integer.lazy_light_animation_duration)
+        get() = resources.getInteger(R.integer.lazy_light_animation_duration)
     protected open val defaultLazyLightAlpha
-        get() =
-            ResourcesCompat.getFloat(resources, R.dimen.lazy_alpha)
+        get() = ResourcesCompat.getFloat(resources, R.dimen.lazy_view_alpha)
 
     private val lazyInflater = AsyncLayoutInflater(context)
-    private val lazyCardView: MaterialCardView = MaterialCardView(context).apply {
-        val light = ImageView(context).apply {
-            layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
-            setImageResource(R.drawable.ic_light)
-            isVisible = false
-        }
-        addView(light)
-        light.animateLight()
-    }
+    private val lightView: ImageView
 
     private var onInflatedListeners: MutableList<() -> Unit> = mutableListOf()
+    private var animationWidth = 0
+    private var animationStarted = false
 
     init {
         attrs.getFromStyleable(
@@ -91,18 +69,19 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
             0,
             ::initAttrs
         )
+        lightView = ImageView(context).apply {
+            layoutParams = LayoutParams(lazyHeight, lazyHeight)
+            setImageDrawable(generateLightDrawable())
+            isVisible = false
+            alpha = lazyLightAlpha
+        }
     }
 
     override fun update() {
-        if (isInflated) binding.update()
-        else lazyCardView.apply {
-            layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, lazyHeight)
-            setCardBackgroundColor(lazyBackgroundColor)
-            radius = lazyCornerRadius
-            strokeColor = lazyBorderColor
-            strokeWidth = lazyBorderWidth
+        if (isInflated) {
+            binding.update()
+        } else {
             alpha = lazyAlpha
-            elevation = lazyElevation
         }
     }
 
@@ -110,9 +89,21 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
         super.onFinishInflate()
         if (!isInEditMode) {
             update()
-            addView(lazyCardView)
-            asyncInflate()
+            background = lazyBackground
+            addView(lightView)
+            context.lazyViewManager?.add(this)
         } else inflate()
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        if (animationWidth < measuredWidth) {
+            animationWidth = measuredWidth
+            if (!animationStarted) {
+                animationStarted = true
+                lightView.animateLight()
+            }
+        }
     }
 
     fun addOnInflatedListener(onInflatedListener: () -> Unit) {
@@ -145,28 +136,42 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
     protected abstract fun VB.subscribe()
     protected abstract fun VB.update()
 
+    private fun generateLightDrawable(): ShapeDrawable {
+        val lazyLightWidth = resources.getDimensionPixelSize(R.dimen.lazy_view_light_size).toFloat()
+        val lazyLightHeight = lazyHeight.toFloat()
+        val path = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(lazyLightWidth, 0f)
+            lineTo(lazyLightHeight, lazyLightHeight)
+            lineTo(lazyLightHeight - lazyLightWidth, lazyLightHeight)
+            close()
+        }
+        val shape = PathShape(path, lazyLightHeight, lazyLightHeight)
+        return ShapeDrawable(shape).apply {
+            intrinsicWidth = lazyHeight
+            intrinsicHeight = lazyHeight
+            paint.color = ContextCompat.getColor(context, R.color.white)
+        }
+    }
+
     private fun View.animateLight() {
-        this@LazyView.measuredWidth.takeIf { it > 0 }?.let { width ->
-            isVisible = true
-            alpha = lazyLightAlpha
-            translationX = -measuredWidth.toFloat()
-            ObjectAnimator.ofFloat(
-                this,
-                "translationX",
-                width.toFloat()
-            ).apply {
-                duration = lazyLightAnimationDuration.toLong()
-                doOnEnd {
-                    animateLight()
-                }
-                start()
+        isVisible = true
+        translationX = -lazyHeight.toFloat()
+        ObjectAnimator.ofFloat(
+            this,
+            "translationX",
+            animationWidth.toFloat()
+        ).apply {
+            duration = lazyLightAnimationDuration.toLong()
+            doOnEnd {
+                animateLight()
             }
-        } ?: post {
-            animateLight()
+            start()
         }
     }
 
     private fun onInflated(view: View) {
+        background = null
         removeAllViews()
         binding = onBind(view)
         isInflated = true
@@ -179,29 +184,13 @@ abstract class LazyView<VB : ViewBinding> @JvmOverloads constructor(
     }
 
     private fun initAttrs(typedArray: TypedArray?) {
-        lazyBackgroundColor = typedArray.getColorOrDef(
-            R.styleable.LazyView_lazy_background_color,
-            defaultLazyBackgroundColor
-        )
-        lazyBorderColor = typedArray.getColorOrDef(
-            R.styleable.LazyView_lazy_border_color,
-            defaultLazyBorderColor
-        )
-        lazyBorderWidth = typedArray.getDimensionPixelSizeOrDef(
-            R.styleable.LazyView_lazy_border_width,
-            defaultLazyBorderWidth
+        lazyBackground = typedArray.getDrawableOrDef(
+            R.styleable.LazyView_lazy_background,
+            defaultLazyBackground
         )
         lazyHeight = typedArray.getDimensionPixelSizeOrDef(
             R.styleable.LazyView_lazy_height,
             defaultLazyHeight
-        )
-        lazyCornerRadius = typedArray.getDimensionOrDef(
-            R.styleable.LazyView_lazy_corner_radius,
-            defaultLazyCornerRadius
-        )
-        lazyElevation = typedArray.getDimensionOrDef(
-            R.styleable.LazyView_lazy_elevation,
-            defaultLazyElevation
         )
         lazyAlpha = typedArray.getFloatOrDef(
             R.styleable.LazyView_lazy_alpha,

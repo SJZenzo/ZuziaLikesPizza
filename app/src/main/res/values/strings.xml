@@ -13,7 +13,7 @@
     <string translatable="false" name="tools_pizza_details_summary_price_per_consumer">12$</string>
 
     <!-- Core -->
-    <string name="app_name">PizzaShare</string>
+    <string translatable="false" name="app_name">PizzaShare</string>
 
     <!-- Formats and units -->
     <string name="format_length">%scm</string>
@@ -26,17 +26,17 @@
     <string name="dialog_remove_pizzas_list_item_title">Remove action</string>
     <string name="dialog_remove_pizzas_list_item_content"><![CDATA[Are you sure you want to remove pizza named <b><i>%s</i></b>&#8201;?<br/><br/>This action can’t be undone.]]></string>
     <string name="dialog_remove_pizzas_list_agree_button_text">Remove</string>
-    <string name="dialog_back_without_saving_title">Back action</string>
+    <string name="dialog_back_without_saving_title">The changes weren\'t saved</string>
     <string name="dialog_back_without_saving_content">Are you sure you want to back to main screen?\n\nYour pizza details will not be saved.</string>
     <string name="dialog_back_without_saving_button_text">Back</string>
 
     <!-- Fragments labels -->
-    <string name="fragment_pizzas_list_label">Pizzas List</string>
-    <string name="fragment_pizza_details_label">Pizza details</string>
+    <string translatable="false" name="fragment_pizzas_list_label">Pizzas List</string>
+    <string translatable="false" name="fragment_pizza_details_label">Pizza details</string>
 
     <!-- Splash screen-->
-    <string name="activity_splash_app_title_first_line">Pizza</string>
-    <string name="activity_splash_app_title_second_line">Share</string>
+    <string translatable="false" name="activity_splash_app_title_first_line">Pizza</string>
+    <string translatable="false" name="activity_splash_app_title_second_line">Share</string>
 
     <!-- Pizzas list screen-->
     <string name="fragment_pizzas_list_summary_label">Total cost</string>

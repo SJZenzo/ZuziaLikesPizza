@@ -7,6 +7,7 @@ import android.text.Spanned
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import creative.development.pizzashare.MainApp
 import creative.development.pizzashare.R
 
 fun Context.showConfirmDialog(
@@ -35,3 +36,5 @@ fun Context.hideKeyboard(windowToken: IBinder) {
     val inputManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputManager.hideSoftInputFromWindow(windowToken, 0)
 }
+
+val Context.lazyViewManager get() = (applicationContext as? MainApp)?.lazyViewManager

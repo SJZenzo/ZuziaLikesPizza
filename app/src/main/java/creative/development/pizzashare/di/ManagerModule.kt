@@ -1,6 +1,8 @@
 package creative.development.pizzashare.di
 
+import creative.development.pizzashare.manager.LazyViewManager
 import creative.development.pizzashare.manager.PizzaManager
+import creative.development.pizzashare.manager.impl.LazyViewManagerImpl
 import creative.development.pizzashare.manager.impl.PizzaManagerImpl
 import dagger.Binds
 import dagger.Module
@@ -14,5 +16,9 @@ abstract class ManagerModule {
 
     @Binds
     @Singleton
-    abstract fun bindAnalyticsService(pizzaManager: PizzaManagerImpl): PizzaManager
+    abstract fun bindPizzaManager(pizzaManager: PizzaManagerImpl): PizzaManager
+
+    @Binds
+    @Singleton
+    abstract fun bindLazyViewManager(pizzaManager: LazyViewManagerImpl): LazyViewManager
 }

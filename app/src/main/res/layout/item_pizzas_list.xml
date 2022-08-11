@@ -93,7 +93,7 @@
         style="@style/Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/smaller_space"
+        android:layout_marginStart="@dimen/small_space"
         app:layout_constraintBottom_toBottomOf="@+id/item_pizzas_list_diameter_label"
         app:layout_constraintStart_toEndOf="@+id/item_pizzas_list_diameter_label"
         app:layout_constraintTop_toTopOf="@+id/item_pizzas_list_diameter_label"
@@ -127,8 +127,9 @@
 
     <ImageView
         android:id="@+id/item_pizzas_list_remove_button"
-        android:layout_width="@dimen/middle_icon"
-        android:layout_height="@dimen/middle_icon"
+        android:layout_width="@dimen/item_pizzas_list_remove_button_size"
+        android:layout_height="@dimen/item_pizzas_list_remove_button_size"
+        android:padding="@dimen/item_pizzas_list_remove_button_padding"
         android:layout_marginTop="11dp"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_remove"

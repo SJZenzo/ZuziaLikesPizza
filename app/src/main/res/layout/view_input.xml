@@ -14,7 +14,6 @@
         app:boxBackgroundColor="@color/white"
         app:boxStrokeColor="@color/mahogany_for_all_states"
         app:boxStrokeWidth="1dp"
-        android:translationZ="@dimen/input_lazy_height"
         app:expandedHintEnabled="false"
         app:hintTextAppearance="@style/LabelTextAppearance"
         app:hintTextColor="@color/mahogany_for_all_states"

@@ -2,17 +2,11 @@ package creative.development.pizzashare.ui.splash
 
 import androidx.lifecycle.ViewModel
 import creative.development.pizzashare.consts.Consts
-import creative.development.pizzashare.manager.PizzaManager
 import creative.development.pizzashare.utils.EventLiveData
-import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
-import javax.inject.Inject
 import kotlin.concurrent.timerTask
 
-@HiltViewModel
-class SplashViewModel @Inject constructor(
-    pizzaManager: PizzaManager
-) : ViewModel() {
+class SplashViewModel constructor() : ViewModel() {
 
     val goToMainActivityEvent = EventLiveData<Unit>()
     val startAnimationEvent = EventLiveData<Unit>()
@@ -21,7 +15,6 @@ class SplashViewModel @Inject constructor(
 
     init {
         startAnimation()
-        pizzaManager.init()
     }
 
     fun endAnimation() {
