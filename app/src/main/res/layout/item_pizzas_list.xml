@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/smaller_space"
-    android:paddingBottom="@dimen/smaller_space">
+    android:paddingTop="@dimen/min_space"
+    android:paddingBottom="@dimen/min_space">
 
     <ImageView
         android:id="@+id/item_pizzas_list_wood_lab_end"
