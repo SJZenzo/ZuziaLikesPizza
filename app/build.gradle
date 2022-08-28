@@ -15,8 +15,8 @@ android {
         applicationId 'creative.development.pizzashare'
         minSdk 23
         targetSdk 32
-        versionCode 10002
-        versionName '1.1.0'
+        versionCode 10101
+        versionName '1.1.1'
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
