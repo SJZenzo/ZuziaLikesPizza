@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.text.InputType
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
@@ -13,7 +14,6 @@ import androidx.core.widget.doAfterTextChanged
 import creative.development.pizzashare.R
 import creative.development.pizzashare.databinding.ViewInputBinding
 import creative.development.pizzashare.utils.extensions.getBooleanOrDef
-import creative.development.pizzashare.utils.extensions.getFromStyleable
 import creative.development.pizzashare.utils.extensions.getIntOrDef
 import creative.development.pizzashare.utils.extensions.getStringOrDef
 
@@ -26,15 +26,11 @@ class InputView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : LazyView<ViewInputBinding>(context, attrs, defStyleAttr) {
+) : BaseView<ViewInputBinding>(context, attrs, defStyleAttr) {
 
     private data class FormattedText(var value: String, var wasApply: Boolean)
 
-    override val defaultLazyHeight: Int
-        get() = resources.getDimensionPixelOffset(R.dimen.input_lazy_height)
-
-    override val layoutResId: Int
-        get() = R.layout.view_input
+    override val styleableResId: IntArray get() = R.styleable.InputView
 
     var unformattedText: String = ""
         private set
@@ -45,7 +41,7 @@ class InputView @JvmOverloads constructor(
             editText?.setText(v)
         }
 
-    val editText get() = if (isInflated) binding.inputView.editText else null
+    val editText get() = binding.inputView.editText
 
     var isValidate: Boolean = true
         private set
@@ -53,30 +49,45 @@ class InputView @JvmOverloads constructor(
     var parser: ((text: String, hasFocus: Boolean) -> String)? = null
     var validator: ((text: String) -> Boolean)? = null
 
-    var label: String by Updatable.UpdatableProperty.lateInit()
-    var inputType: Int by Updatable.UpdatableProperty.lateInit()
-    var imeOptions: Int by Updatable.UpdatableProperty.lateInit()
-    var readonly: Boolean by Updatable.UpdatableProperty.lateInit()
-    var required: Boolean by Updatable.UpdatableProperty.lateInit()
-    var multiline: Boolean by Updatable.UpdatableProperty.lateInit()
-    var format: String? by Updatable.UpdatableProperty.lateInit()
+    var label: String by lateInitProperty()
+    var inputType: Int by lateInitProperty()
+    var imeOptions: Int by lateInitProperty()
+    var readonly: Boolean by lateInitProperty()
+    var required: Boolean by lateInitProperty()
+    var multiline: Boolean by lateInitProperty()
+    var format: String? by lateInitProperty()
 
-    private var isErrorShown: Boolean by Updatable.UpdatableProperty(false)
+    private var isErrorShown: Boolean by updatableProperty(false)
     private var onStateChangeListeners: MutableList<(isValid: Boolean) -> Unit> = mutableListOf()
     private val formattedText = FormattedText("", true)
     private var initialText: String = ""
 
     init {
-        attrs.getFromStyleable(
-            context,
-            R.styleable.InputView,
-            defStyleAttr,
-            0,
-            ::initAttrs
-        )
+        init(attrs, defStyleAttr)
     }
 
-    override fun onBind(view: View) = ViewInputBinding.bind(view)
+    override fun initAttrs(typedArray: TypedArray?) {
+        initialText = typedArray.getStringOrDef(R.styleable.InputView_android_text, "")
+        label = typedArray.getStringOrDef(R.styleable.InputView_android_label, "")
+        inputType = typedArray.getIntOrDef(
+            R.styleable.InputView_android_inputType,
+            InputType.TYPE_CLASS_TEXT
+        )
+        imeOptions = typedArray.getIntOrDef(
+            R.styleable.InputView_android_imeOptions,
+            EditorInfo.IME_NULL
+        )
+        readonly = typedArray.getBooleanOrDef(R.styleable.InputView_readonly, false)
+        required = typedArray.getBooleanOrDef(R.styleable.InputView_android_required, false)
+        multiline = typedArray.getBooleanOrDef(R.styleable.InputView_multiline, false)
+        format = typedArray?.getString(R.styleable.InputView_format)
+    }
+
+    override fun onBind(
+        layoutInflater: LayoutInflater,
+        parent: ViewGroup?,
+        attachToParent: Boolean
+    ) = ViewInputBinding.inflate(layoutInflater, parent, attachToParent)
 
     override fun ViewInputBinding.subscribe() {
         editText?.apply {
@@ -97,10 +108,7 @@ class InputView @JvmOverloads constructor(
             }
             setText(initialText)
             setOnFocusChangeListener { _, hasFocus ->
-                var newText = unformattedText
-                parser?.invoke(unformattedText, hasFocus)?.let { text ->
-                    newText = text
-                }
+                val newText = parser?.invoke(unformattedText, hasFocus) ?: unformattedText
                 if (!hasFocus) {
                     validate(newText)
                 }
@@ -169,22 +177,5 @@ class InputView @JvmOverloads constructor(
         layoutParams = layoutParams?.apply {
             height = newHeight
         } ?: LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, newHeight)
-    }
-
-    private fun initAttrs(typedArray: TypedArray?) {
-        initialText = typedArray.getStringOrDef(R.styleable.InputView_android_text, "")
-        label = typedArray.getStringOrDef(R.styleable.InputView_android_label, "")
-        inputType = typedArray.getIntOrDef(
-            R.styleable.InputView_android_inputType,
-            InputType.TYPE_CLASS_TEXT
-        )
-        imeOptions = typedArray.getIntOrDef(
-            R.styleable.InputView_android_imeOptions,
-            EditorInfo.IME_NULL
-        )
-        readonly = typedArray.getBooleanOrDef(R.styleable.InputView_readonly, false)
-        required = typedArray.getBooleanOrDef(R.styleable.InputView_android_required, false)
-        multiline = typedArray.getBooleanOrDef(R.styleable.InputView_multiline, false)
-        format = typedArray?.getString(R.styleable.InputView_format)
     }
 }

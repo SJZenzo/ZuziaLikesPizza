@@ -130,7 +130,6 @@
                     android:id="@+id/fragment_pizza_details_summary"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:lazy_height="@dimen/_139sdp"
                     app:multiline="true"
                     android:label="@string/fragment_pizza_details_summary_label"
                     app:layout_constraintBottom_toBottomOf="parent"

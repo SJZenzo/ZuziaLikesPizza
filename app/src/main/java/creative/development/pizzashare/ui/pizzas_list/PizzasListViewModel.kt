@@ -1,8 +1,8 @@
 package creative.development.pizzashare.ui.pizzas_list
 
-import androidx.lifecycle.ViewModel
 import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
 import creative.development.pizzashare.manager.PizzaManager
+import creative.development.pizzashare.ui.base.BaseFragmentViewModel
 import creative.development.pizzashare.utils.EventLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PizzasListViewModel @Inject constructor(
     private val pizzaManager: PizzaManager
-) : ViewModel() {
+) : BaseFragmentViewModel() {
 
     val loadedPizzasListEvent = EventLiveData<List<PizzaListItem>>()
     val countedTotalCostEvent = EventLiveData<Double>()
@@ -18,7 +18,7 @@ class PizzasListViewModel @Inject constructor(
     val onRemovePizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
 
     fun refreshPizzasList() {
-        pizzaManager.get().let { pizzasList ->
+        pizzaManager.getAll().let { pizzasList ->
             loadedPizzasListEvent.value = pizzasList.map { pizza ->
                 PizzaListItem(
                     pizza = pizza,

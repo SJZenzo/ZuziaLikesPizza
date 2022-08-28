@@ -7,9 +7,6 @@
     <dimen name="pizza_slice_image_height">@dimen/_24sdp</dimen>
 
     <!--  View properties -->
-    <dimen name="lazy_view_light_size">@dimen/_19sdp</dimen>
-    <item name="lazy_view_alpha" type="dimen" format="float">0.9f</item>
-    <item name="lazy_view_light_alpha" type="dimen" format="float">0.8f</item>
     <dimen name="dialog_padding_top">22dp</dimen>
     <dimen name="dialog_padding_horizontal">28dp</dimen>
     <dimen name="input_padding_top">@dimen/_12sdp</dimen>
@@ -17,7 +14,7 @@
     <dimen name="input_button_top">@dimen/_12sdp</dimen>
     <dimen name="input_button_bottom">@dimen/_12sdp</dimen>
     <dimen name="input_label_text_size">@dimen/_12ssp</dimen>
-    <dimen name="input_lazy_height">@dimen/_48sdp</dimen>
+    <dimen name="loader_icon_size">@dimen/_64sdp</dimen>
 
     <!--  Spacing  -->
     <dimen name="min_space">@dimen/_3sdp</dimen>

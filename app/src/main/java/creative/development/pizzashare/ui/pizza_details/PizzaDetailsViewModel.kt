@@ -1,10 +1,10 @@
 package creative.development.pizzashare.ui.pizza_details
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import creative.development.pizzashare.consts.Consts
 import creative.development.pizzashare.data.model.Pizza
 import creative.development.pizzashare.manager.PizzaManager
+import creative.development.pizzashare.ui.base.BaseFragmentViewModel
 import creative.development.pizzashare.utils.EventLiveData
 import creative.development.pizzashare.utils.extensions.coerceRangeOrDef
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 class PizzaDetailsViewModel @Inject constructor(
     private val pizzaManager: PizzaManager,
     savedStateHandle: SavedStateHandle
-) : ViewModel() {
+) : BaseFragmentViewModel() {
 
     companion object {
         const val DEFAULT_DIAMETER = 0f

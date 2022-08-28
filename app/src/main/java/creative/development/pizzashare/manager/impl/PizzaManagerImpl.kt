@@ -29,6 +29,10 @@ class PizzaManagerImpl @Inject constructor(
         stringPreferencesKey(Consts.PIZZAS_LIST_STORAGE_KEY_NAME)
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
+    private val Context.pizzasListDataStore: DataStore<Preferences> by preferencesDataStore(
+        name = Consts.PIZZAS_LIST_STORAGE_NAME
+    )
+
     override fun init() {
         coroutineScope.launch {
             pizzasList.clear()
@@ -50,7 +54,7 @@ class PizzaManagerImpl @Inject constructor(
         return pizzasList[index]
     }
 
-    override fun get(): List<Pizza> {
+    override fun getAll(): List<Pizza> {
         return pizzasList
     }
 
@@ -64,10 +68,6 @@ class PizzaManagerImpl @Inject constructor(
             context.savePizzasList(pizzasList)
         }
     }
-
-    private val Context.pizzasListDataStore: DataStore<Preferences> by preferencesDataStore(
-        name = Consts.PIZZAS_LIST_STORAGE_NAME
-    )
 
     private suspend fun Context.loadPizzasList() =
         pizzasListDataStore.data.map { preferences ->

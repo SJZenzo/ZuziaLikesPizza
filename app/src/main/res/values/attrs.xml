@@ -12,12 +12,8 @@
         <attr name="format" format="string" />
     </declare-styleable>
 
-    <declare-styleable name="LazyView">
-        <attr name="lazy_background" format="reference" />
-        <attr name="lazy_height" format="dimension" />
-        <attr name="lazy_alpha" format="float" />
-        <attr name="lazy_light_alpha" format="float" />
-        <attr name="lazy_light_animation_duration" format="integer" />
+    <declare-styleable name="LoaderView">
+        <attr name="android:autoStart" />
     </declare-styleable>
 
 </resources>

@@ -1,5 +1,5 @@
 package creative.development.pizzashare.ui.main
 
-import androidx.lifecycle.ViewModel
+import creative.development.pizzashare.ui.base.BaseActivityViewModel
 
-class MainViewModel : ViewModel()
+class MainViewModel : BaseActivityViewModel()

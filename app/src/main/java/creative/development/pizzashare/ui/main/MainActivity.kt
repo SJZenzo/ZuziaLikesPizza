@@ -20,6 +20,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override val viewModel: MainViewModel by viewModels()
 
+    override val loader get() = binding.activityMainLoader
+
     private val navHostFragment
         get() = supportFragmentManager.findFragmentById(
             R.id.activity_main_nav_host_fragment
@@ -31,7 +33,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         ActivityMainBinding.inflate(layoutInflater)
 
     override fun onBackPressed() {
-        val result = (currentFragment as? BaseFragment<*, *>)?.onBackPressed() ?: true
+        val result = (currentFragment as? BaseFragment<*, *, *>)?.onBackPressed() ?: true
         if (result) super.onBackPressed()
     }
 

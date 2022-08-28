@@ -1,12 +1,12 @@
 package creative.development.pizzashare.ui.splash
 
-import androidx.lifecycle.ViewModel
 import creative.development.pizzashare.consts.Consts
+import creative.development.pizzashare.ui.base.BaseActivityViewModel
 import creative.development.pizzashare.utils.EventLiveData
 import java.util.*
 import kotlin.concurrent.timerTask
 
-class SplashViewModel constructor() : ViewModel() {
+class SplashViewModel : BaseActivityViewModel() {
 
     val goToMainActivityEvent = EventLiveData<Unit>()
     val startAnimationEvent = EventLiveData<Unit>()
