@@ -4,6 +4,7 @@
     package="creative.development.pizzashare">
 
     <application
+        android:hardwareAccelerated="true"
         android:name=".MainApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,7 +16,12 @@
         android:theme="@style/Theme.PizzaShare"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8500351650339944~1628660604" />
+
         <activity
+            android:hardwareAccelerated="true"
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -27,6 +33,7 @@
         </activity>
 
         <activity
+            android:hardwareAccelerated="true"
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"

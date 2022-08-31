@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import creative.development.pizzashare.R
 import creative.development.pizzashare.databinding.ActivityMainBinding
 import creative.development.pizzashare.ui.base.BaseActivity
@@ -45,5 +47,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             }
         }
         return result
+    }
+
+    override fun ActivityMainBinding.subscribe() {
+        MobileAds.initialize(this@MainActivity) { }
+        val adRequest = AdRequest.Builder().build()
+        activityMainAdView.loadAd(adRequest)
     }
 }

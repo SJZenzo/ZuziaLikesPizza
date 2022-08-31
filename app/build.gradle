@@ -34,11 +34,21 @@ android {
     }
 
     buildTypes {
+        debug {
+            resValue 'string', 'ad_banner_unit_id', 'ca-app-pub-3940256099942544/6300978111'
+        }
         release {
+            resValue 'string', 'ad_banner_unit_id', 'ca-app-pub-3940256099942544/6300978111'
             minifyEnabled true
-            shrinkResources  true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+        }
+        prod {
+            resValue 'string', 'ad_banner_unit_id', 'ca-app-pub-8500351650339944/7954944549'
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -87,9 +97,12 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.43.1'
     kapt 'com.google.dagger:hilt-compiler:2.43.1'
 
-    //Scalable DP and SP
+    // Scalable DP and SP
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    // Google adds from admob
+    implementation 'com.google.android.gms:play-services-ads:21.1.0'
 
     // Tests
     testImplementation 'junit:junit:4.13.2'
