@@ -1,4 +1,4 @@
-package creative.development.pizzashare.ui.pizzas_list
+package creative.development.pizzashare.ui.pizzasList
 
 import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
 import creative.development.pizzashare.manager.PizzaManager

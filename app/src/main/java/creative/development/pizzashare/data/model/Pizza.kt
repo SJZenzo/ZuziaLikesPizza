@@ -3,7 +3,7 @@ package creative.development.pizzashare.data.model
 import creative.development.pizzashare.consts.Consts
 import kotlin.math.pow
 
-data class Pizza constructor(
+data class Pizza(
     val name: String,
     val diameter: Float,
     val price: Float,

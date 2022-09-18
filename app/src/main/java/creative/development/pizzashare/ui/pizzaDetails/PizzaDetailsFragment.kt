@@ -1,4 +1,4 @@
-package creative.development.pizzashare.ui.pizza_details
+package creative.development.pizzashare.ui.pizzaDetails
 
 import android.annotation.SuppressLint
 import android.view.View
