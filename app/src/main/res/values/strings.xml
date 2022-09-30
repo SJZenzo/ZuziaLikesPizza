@@ -23,7 +23,7 @@
 
     <!-- Dialogs labels -->
     <string name="dialog_deny_button_default_text">Cancel</string>
-    <string name="dialog_remove_pizzas_list_item_title">Remove action</string>
+    <string name="dialog_remove_pizzas_list_item_title">Remove pizza</string>
     <string name="dialog_remove_pizzas_list_item_content"><![CDATA[Are you sure you want to remove pizza named <b><i>%s</i></b>&#8201;?<br/><br/>This action can’t be undone.]]></string>
     <string name="dialog_remove_pizzas_list_agree_button_text">Remove</string>
     <string name="dialog_back_without_saving_title">The changes weren\'t saved</string>

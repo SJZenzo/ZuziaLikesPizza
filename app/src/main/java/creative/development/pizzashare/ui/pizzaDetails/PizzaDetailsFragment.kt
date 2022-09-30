@@ -2,7 +2,6 @@ package creative.development.pizzashare.ui.pizzaDetails
 
 import android.annotation.SuppressLint
 import android.view.View
-import androidx.core.text.toSpanned
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -109,7 +108,7 @@ class PizzaDetailsFragment :
     private fun showBackWithoutSavingConfirmationDialog() {
         context?.showConfirmDialog(
             title = getString(R.string.dialog_back_without_saving_title),
-            content = getString(R.string.dialog_back_without_saving_content).toSpanned(),
+            content = getString(R.string.dialog_back_without_saving_content),
             approveButtonText = getString(R.string.dialog_back_without_saving_button_text)
         ) {
             findNavController().popBackStack()
@@ -207,7 +206,7 @@ class PizzaDetailsFragment :
             !isDiameterValid -> {
                 fragmentPizzaDetailsPizzaDiameterInput.editText?.requestFocus()
             }
-            !isPriceValid -> {
+            else -> {
                 fragmentPizzaDetailsPizzaPriceInput.editText?.requestFocus()
             }
         }

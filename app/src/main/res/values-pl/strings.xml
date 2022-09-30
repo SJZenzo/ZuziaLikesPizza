@@ -10,7 +10,7 @@
 
     <!-- Dialogs labels -->
     <string name="dialog_deny_button_default_text">Anuluj</string>
-    <string name="dialog_remove_pizzas_list_item_title">Usuń element</string>
+    <string name="dialog_remove_pizzas_list_item_title">Usuń pizzę</string>
     <string name="dialog_remove_pizzas_list_item_content"><![CDATA[Czy na pewno chcesz usunąć pizzę o nazwie <b><i>%s</i></b>&#8201;?<br/><br/> Tej akcji nie będzie się dało cofnąć.]]></string>
     <string name="dialog_remove_pizzas_list_agree_button_text">Usuń</string>
     <string name="dialog_back_without_saving_title">Zmiany nie zostały zapisane</string>

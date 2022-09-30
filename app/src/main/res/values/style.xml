@@ -23,10 +23,12 @@
     <style name="DialogTitle" parent="MaterialAlertDialog.Material3.Title.Text">
         <item name="android:lineSpacingMultiplier">2</item>
         <item name="android:textAppearance">@style/DialogTitleTextAppearance</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="DialogContent" parent="MaterialAlertDialog.Material3.Body.Text">
         <item name="android:textAppearance">@style/DialogContentTextAppearance</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="DialogTitleTextAppearance" parent="@android:style/TextAppearance">

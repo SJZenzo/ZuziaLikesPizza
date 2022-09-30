@@ -3,7 +3,6 @@ package creative.development.pizzashare.utils.extensions
 import android.app.Activity
 import android.content.Context
 import android.os.IBinder
-import android.text.Spanned
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -11,15 +10,15 @@ import creative.development.pizzashare.R
 
 fun Context.showConfirmDialog(
     title: String,
-    content: Spanned,
+    content: String,
     approveButtonText: String,
     denyButtonText: String = getString(R.string.dialog_deny_button_default_text),
     onDenyAction: (() -> Unit)? = null,
-    onApproveAction: (() -> Unit)?,
+    onApproveAction: (() -> Unit)?
 ): AlertDialog = MaterialAlertDialogBuilder(this, R.style.Dialog)
     .apply {
-        setTitle(title)
-        setMessage(content)
+        setTitle(title.parseHtml())
+        setMessage(content.parseHtml())
         setNegativeButton(denyButtonText) { dialog, _ ->
             dialog.dismiss()
             onDenyAction?.invoke()

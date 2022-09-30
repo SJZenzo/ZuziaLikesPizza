@@ -10,36 +10,36 @@
         android:id="@+id/fragment_pizzas_list_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_pizzas_list"
         android:layout_marginBottom="@dimen/bigger_space"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/fragment_pizzas_list_total_cost_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_pizzas_list" />
 
     <creative.development.pizzashare.utils.view.InputView
         android:id="@+id/fragment_pizzas_list_total_cost_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:format="@string/format_currency"
-        android:imeOptions="actionNext"
-        app:readonly="true"
+        android:layout_marginEnd="@dimen/middle_space"
         android:layout_marginBottom="@dimen/min_space"
+        android:imeOptions="actionNext"
         android:label="@string/fragment_pizzas_list_summary_label"
         android:required="true"
-        android:layout_marginEnd="@dimen/middle_space"
+        app:format="@string/format_currency"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fragment_pizzas_list_add_pizza_floating_button"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:readonly="true" />
 
     <ImageView
         android:layout_width="@dimen/pizza_slice_image_width"
         android:layout_height="@dimen/pizza_slice_image_height"
         android:layout_marginTop="@dimen/middle_space"
         android:layout_marginEnd="12dp"
-        android:visibility="@integer/pizza_slice_visibility"
         android:src="@drawable/pizza_slice_image"
+        android:visibility="@integer/pizza_slice_visibility"
         app:layout_constraintBottom_toTopOf="@+id/fragment_pizzas_list_total_cost_label"
         app:layout_constraintEnd_toEndOf="@+id/fragment_pizzas_list_total_cost_label"
         app:layout_constraintHorizontal_bias="0.72"
@@ -58,11 +58,11 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <include
-        android:visibility="gone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:id="@+id/layout_empty_pizzas_list"
         layout="@layout/layout_empty_pizzas_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_pizzas_list_recycler_view"
         app:layout_constraintEnd_toEndOf="@+id/fragment_pizzas_list_recycler_view"
         app:layout_constraintStart_toStartOf="@+id/fragment_pizzas_list_recycler_view"

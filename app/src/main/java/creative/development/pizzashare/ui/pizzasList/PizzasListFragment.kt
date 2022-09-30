@@ -1,8 +1,6 @@
 package creative.development.pizzashare.ui.pizzasList
 
 import android.annotation.SuppressLint
-import android.os.Build
-import android.text.Html
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -74,23 +72,12 @@ class PizzasListFragment :
     private fun showRemovePizzasListItemConfirmationDialog(
         pizzaDataHolder: PizzasListItemDataHolder
     ) {
-        val content = getString(
-            R.string.dialog_remove_pizzas_list_item_content,
-            pizzaDataHolder.pizza.name
-        ).let { content ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Html.fromHtml(
-                    content,
-                    Html.FROM_HTML_MODE_COMPACT
-                )
-            } else {
-                @Suppress("DEPRECATION")
-                Html.fromHtml(content)
-            }
-        }
         context?.showConfirmDialog(
             title = getString(R.string.dialog_remove_pizzas_list_item_title),
-            content = content,
+            content = getString(
+                R.string.dialog_remove_pizzas_list_item_content,
+                pizzaDataHolder.pizza.name
+            ),
             approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text)
         ) {
             viewModel.removePizzaItem(pizzaDataHolder.pizzaIndex)
