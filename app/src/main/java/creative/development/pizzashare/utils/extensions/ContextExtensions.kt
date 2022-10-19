@@ -12,8 +12,10 @@ fun Context.showConfirmDialog(
     title: String,
     content: String,
     approveButtonText: String,
+    archiveButtonText: String = getString(R.string.dialog_remove_pizzas_list_archive_button_text),
     denyButtonText: String = getString(R.string.dialog_deny_button_default_text),
     onDenyAction: (() -> Unit)? = null,
+    onArchiveAction: (() -> Unit)? = null,
     onApproveAction: (() -> Unit)?
 ): AlertDialog = MaterialAlertDialogBuilder(this, R.style.Dialog)
     .apply {
@@ -22,6 +24,10 @@ fun Context.showConfirmDialog(
         setNegativeButton(denyButtonText) { dialog, _ ->
             dialog.dismiss()
             onDenyAction?.invoke()
+        }
+        setNeutralButton(archiveButtonText) { dialog, _ ->
+            dialog.dismiss()
+            onArchiveAction?.invoke()
         }
         setPositiveButton(approveButtonText) { dialog, _ ->
             dialog.dismiss()
