@@ -106,7 +106,7 @@ class PizzaDetailsFragment :
     }
 
     private fun showBackWithoutSavingConfirmationDialog() {
-        context?.showConfirmDialog(
+        context?.showExitDialog(
             title = getString(R.string.dialog_back_without_saving_title),
             content = getString(R.string.dialog_back_without_saving_content),
             approveButtonText = getString(R.string.dialog_back_without_saving_button_text)

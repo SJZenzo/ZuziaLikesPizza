@@ -14,7 +14,7 @@ import creative.development.pizzashare.databinding.FragmentPizzasListBinding
 import creative.development.pizzashare.ui.base.BaseFragment
 import creative.development.pizzashare.ui.main.MainViewModel
 import creative.development.pizzashare.utils.extensions.roundToPlaces
-import creative.development.pizzashare.utils.extensions.showConfirmDialog
+import creative.development.pizzashare.utils.extensions.showDeleteDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -72,13 +72,13 @@ class PizzasListFragment :
     private fun showRemovePizzasListItemConfirmationDialog(
         pizzaDataHolder: PizzasListItemDataHolder
     ) {
-        context?.showConfirmDialog(
+        context?.showDeleteDialog(
             title = getString(R.string.dialog_remove_pizzas_list_item_title),
             content = getString(
                 R.string.dialog_remove_pizzas_list_item_content,
                 pizzaDataHolder.pizza.name
             ),
-            approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text)
+            approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text),
         ) {
             viewModel.removePizzaItem(pizzaDataHolder.pizzaIndex)
         }
