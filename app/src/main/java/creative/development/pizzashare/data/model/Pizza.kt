@@ -8,7 +8,8 @@ data class Pizza(
     val diameter: Float,
     val price: Float,
     val slices: Int,
-    val consumersNumber: Int
+    val consumersNumber: Int,
+    val archive: Boolean
 ) {
 
     init {

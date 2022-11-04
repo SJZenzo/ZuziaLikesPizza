@@ -47,6 +47,7 @@ class PizzaDetailsViewModel @Inject constructor(
         price: Float? = null,
         sliceNumber: Int? = null,
         consumerNumber: Int? = null,
+        archiveBool: Boolean = false,
         compareWithOriginal: Boolean = true
     ) =
         Pizza(
@@ -66,7 +67,8 @@ class PizzaDetailsViewModel @Inject constructor(
             consumerNumber.coerceRangeOrDef(
                 DEFAULT_CONSUMERS_NUMBER..MAX_CONSUMERS_NUMBER,
                 DEFAULT_CONSUMERS_NUMBER
-            )
+            ),
+            archiveBool
         ).also { pizza ->
             if (compareWithOriginal) pizza.compareWithOriginal()
         }
