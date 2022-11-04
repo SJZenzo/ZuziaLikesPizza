@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@+id/fragment_pizzas_list_total_cost_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnArchives"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_pizzas_list" />
 
     <creative.development.pizzashare.utils.view.InputView
@@ -68,13 +68,13 @@
         app:layout_constraintStart_toStartOf="@+id/fragment_pizzas_list_recycler_view"
         app:layout_constraintTop_toTopOf="@+id/fragment_pizzas_list_recycler_view" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnArchives"
-        style="@style/Archives"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/ic_archives"
         android:text="@string/fragment_pizzas_list_archives_button"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
