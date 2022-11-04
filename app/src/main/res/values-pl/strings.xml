@@ -22,6 +22,7 @@
     <string name="fragment_pizzas_list_summary_label">Koszt całkowity</string>
     <string name="fragment_pizzas_list_add_pizza_button">Dodaj pizze</string>
     <string name="fragment_pizzas_list_empty_list_message">Żadna pizza nie została jeszcze dodana</string>
+    <string name="fragment_pizzas_list_archives_button">Archiwum</string>
 
     <!-- Pizza details screen -->
     <string name="fragment_pizza_details_name_label">Nazwa pizzy</string>

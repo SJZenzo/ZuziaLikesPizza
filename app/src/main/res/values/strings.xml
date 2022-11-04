@@ -43,6 +43,7 @@
     <string name="fragment_pizzas_list_summary_label">Total cost</string>
     <string name="fragment_pizzas_list_add_pizza_button">Add pizza</string>
     <string name="fragment_pizzas_list_empty_list_message">No pizza has been added yet</string>
+    <string name="fragment_pizzas_list_archives_button">Archives</string>
 
     <!-- Pizza details screen -->
     <string name="fragment_pizza_details_name_label">Pizza name</string>

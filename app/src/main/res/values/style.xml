@@ -77,6 +77,21 @@
         <item name="iconPadding">@dimen/smaller_space</item>
     </style>
 
+    <style name="Archives" parent="Widget.Material3.Button.OutlinedButton.Icon">
+        <item name="android:paddingTop">@dimen/input_button_top</item>
+        <item name="android:paddingBottom">@dimen/input_button_bottom</item>
+        <item name="backgroundTint">@color/maximum_green_for_all_states</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/yellow_orange</item>
+        <item name="icon">@drawable/ic_archives</item>
+        <item name="iconTint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/ButtonTextAppearance</item>
+        <item name="android:paddingStart">@dimen/middle_space</item>
+        <item name="android:paddingEnd">@dimen/middle_space</item>
+        <item name="iconPadding">@dimen/smaller_space</item>
+    </style>
+
     <style name="AppTitle">
         <item name="android:fontFamily">@font/fredericka_the_great</item>
         <item name="android:textColor">@color/white</item>
