@@ -9,7 +9,7 @@ data class Pizza(
     val price: Float,
     val slices: Int,
     val consumersNumber: Int,
-    val archive: Boolean
+    var isArchive: Boolean
 ) {
 
     init {

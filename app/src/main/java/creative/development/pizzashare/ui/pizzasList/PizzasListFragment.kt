@@ -69,6 +69,10 @@ class PizzasListFragment :
         navigate(action)
     }
 
+    private fun onArchiveAction() {
+
+    }
+
     private fun showRemovePizzasListItemConfirmationDialog(
         pizzaDataHolder: PizzasListItemDataHolder
     ) {
@@ -79,9 +83,9 @@ class PizzasListFragment :
                 pizzaDataHolder.pizza.name
             ),
             approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text),
-            extraButtonText = getString(R.string.dialog_remove_pizzas_list_archive_button_text)
-        ) {
-            viewModel.removePizzaItem(pizzaDataHolder.pizzaIndex)
-        }
+            extraButtonText = getString(R.string.dialog_remove_pizzas_list_archive_button_text),
+            onApproveAction = { viewModel.removePizzaItem(pizzaDataHolder.pizzaIndex) },
+            onExtraAction = { viewModel.archivePizzaItem(pizzaDataHolder.pizzaIndex, true) }
+        )
     }
 }

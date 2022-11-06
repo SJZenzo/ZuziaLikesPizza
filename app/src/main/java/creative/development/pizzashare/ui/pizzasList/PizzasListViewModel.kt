@@ -40,4 +40,9 @@ class PizzasListViewModel @Inject constructor(
         pizzaManager.remove(pizzaIndex)
         refreshPizzasList()
     }
+
+    fun archivePizzaItem(pizzaIndex: Int, isArchive: Boolean) {
+        pizzaManager.setArchive(pizzaIndex, isArchive)
+        refreshPizzasList()
+    }
 }

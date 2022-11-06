@@ -6,6 +6,7 @@ interface PizzaManager {
     fun init()
     fun add(pizza: Pizza)
     fun set(index: Int, pizza: Pizza)
+    fun setArchive(index: Int, archive: Boolean)
     fun get(index: Int): Pizza
     fun getAll(): List<Pizza>
     fun remove(index: Int)

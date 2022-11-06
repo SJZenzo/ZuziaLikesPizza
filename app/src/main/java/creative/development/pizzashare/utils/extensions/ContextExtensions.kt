@@ -15,7 +15,7 @@ fun Context.showDialog(
     extraButtonText: String? = null,
     denyButtonText: String = getString(R.string.dialog_deny_button_default_text),
     onDenyAction: (() -> Unit)? = null,
-    onArchiveAction: (() -> Unit)? = null,
+    onExtraAction: (() -> Unit)? = null,
     onApproveAction: (() -> Unit)?
 ): AlertDialog = MaterialAlertDialogBuilder(this, R.style.Dialog)
     .apply {
@@ -29,7 +29,7 @@ fun Context.showDialog(
         extraButtonText?.let {
             setNeutralButton(extraButtonText) { dialog, _ ->
                 dialog.dismiss()
-                onArchiveAction?.invoke()
+                onExtraAction?.invoke()
             }
         }
 
