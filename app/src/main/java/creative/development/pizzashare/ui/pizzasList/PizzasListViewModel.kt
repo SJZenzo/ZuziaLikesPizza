@@ -33,7 +33,6 @@ class PizzasListViewModel @Inject constructor(
             }
             countedTotalCostEvent.value = pizzasList.sumOf { pizza ->
                 pizza.price.toDouble()
-
             }
         }
     }
@@ -44,7 +43,7 @@ class PizzasListViewModel @Inject constructor(
     }
 
     fun archivePizzaItem(pizzaIndex: Int, isArchive: Boolean) {
-        pizzaManager.setArchive(pizzaIndex, true)
+        pizzaManager.setArchive(pizzaIndex, isArchive.not())
         refreshPizzasList(isArchive)
     }
 }

@@ -1,6 +1,7 @@
 package creative.development.pizzashare.ui.pizzasList
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -32,6 +33,7 @@ class PizzasListFragment :
 
     override fun onResume() {
         super.onResume()
+        isViewArchive = false
         viewModel.refreshPizzasList(isViewArchive)
     }
 
@@ -43,6 +45,8 @@ class PizzasListFragment :
         }
         btnArchives.setOnClickListener {
             changeViewArchiveOrNot()
+            if (isViewArchive) it.setBackgroundResource(R.drawable.ic_unarchive)
+            else it.setBackgroundResource(R.drawable.ic_archives)
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
     }
@@ -72,6 +76,7 @@ class PizzasListFragment :
             pizzaIndex
         )
         navigate(action)
+
     }
 
     private fun changeViewArchiveOrNot() {
@@ -82,30 +87,23 @@ class PizzasListFragment :
     private fun showRemovePizzasListItemConfirmationDialog(
         pizzaDataHolder: PizzasListItemDataHolder
     ) {
-        context?.showDialog(
-            title = getString(R.string.dialog_remove_pizzas_list_item_title),
+        context?.showDialog(title = getString(R.string.dialog_remove_pizzas_list_item_title),
             content = getString(
-                R.string.dialog_remove_pizzas_list_item_content,
-                pizzaDataHolder.pizza.name
+                R.string.dialog_remove_pizzas_list_item_content, pizzaDataHolder.pizza.name
             ),
             approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text),
-            extraButtonText = if (isViewArchive) {
+            extraButtonText = if (!isViewArchive)
                 getString(R.string.dialog_remove_pizzas_list_archive_button_text)
-            } else {
-                getString(R.string.dialog_remove_pizzas_list_archivezed_button_text)
-            },
+            else getString(R.string.dialog_remove_pizzas_list_unarchive_button_text),
             onApproveAction = {
                 viewModel.removePizzaItem(
-                    pizzaDataHolder.pizzaIndex,
-                    isViewArchive
+                    pizzaDataHolder.pizzaIndex, isViewArchive
                 )
             },
             onExtraAction = {
                 viewModel.archivePizzaItem(
-                    pizzaDataHolder.pizzaIndex,
-                    isViewArchive
+                    pizzaDataHolder.pizzaIndex, isViewArchive
                 )
-            }
-        )
+            })
     }
 }

@@ -27,7 +27,7 @@
     <string name="dialog_remove_pizzas_list_item_content"><![CDATA[Are you sure you want to remove pizza named <b><i>%s</i></b>&#8201;?<br/><br/>This action can’t be undone.]]></string>
     <string name="dialog_remove_pizzas_list_agree_button_text">Remove</string>
     <string name="dialog_remove_pizzas_list_archive_button_text">Archive</string>
-    <string name="dialog_remove_pizzas_list_archivezed_button_text">Archivized</string>
+    <string name="dialog_remove_pizzas_list_unarchive_button_text">unarchive</string>
     <string name="dialog_back_without_saving_title">The changes weren\'t saved</string>
     <string name="dialog_back_without_saving_content">Are you sure you want to back to main screen?\n\nYour pizza details will not be saved.</string>
     <string name="dialog_back_without_saving_button_text">Back</string>
