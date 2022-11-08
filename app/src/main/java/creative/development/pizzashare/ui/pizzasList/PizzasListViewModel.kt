@@ -1,6 +1,7 @@
 package creative.development.pizzashare.ui.pizzasList
 
 import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
+import creative.development.pizzashare.data.model.Pizza
 import creative.development.pizzashare.manager.PizzaManager
 import creative.development.pizzashare.ui.base.BaseFragmentViewModel
 import creative.development.pizzashare.utils.EventLiveData
@@ -19,6 +20,12 @@ class PizzasListViewModel @Inject constructor(
 
     fun refreshPizzasList() {
         pizzaManager.getAll().let { pizzasList ->
+            lateinit var pizzaBuf: MutableList<Pizza>
+            for (pizza in pizzasList) {
+                if (pizza.isArchive) {
+                    pizzaBuf.add(pizza)
+                }
+            }
             loadedPizzasListEvent.value = pizzasList.map { pizza ->
                 PizzaListItem(
                     pizza = pizza,
@@ -32,6 +39,7 @@ class PizzasListViewModel @Inject constructor(
             }
             countedTotalCostEvent.value = pizzasList.sumOf { pizza ->
                 pizza.price.toDouble()
+
             }
         }
     }

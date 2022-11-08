@@ -69,10 +69,6 @@ class PizzasListFragment :
         navigate(action)
     }
 
-    private fun onArchiveAction() {
-
-    }
-
     private fun showRemovePizzasListItemConfirmationDialog(
         pizzaDataHolder: PizzasListItemDataHolder
     ) {
