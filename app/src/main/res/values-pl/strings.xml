@@ -14,6 +14,7 @@
     <string name="dialog_remove_pizzas_list_item_content"><![CDATA[Czy na pewno chcesz usunąć pizzę o nazwie <b><i>%s</i></b>&#8201;?<br/><br/> Tej akcji nie będzie się dało cofnąć.]]></string>
     <string name="dialog_remove_pizzas_list_agree_button_text">Usuń</string>
     <string name="dialog_remove_pizzas_list_archive_button_text">Archiwizuj</string>
+    <string name="dialog_remove_pizzas_list_archivezed_button_text">Zarchizowane</string>
     <string name="dialog_back_without_saving_title">Zmiany nie zostały zapisane</string>
     <string name="dialog_back_without_saving_content">Czy na pewno chcesz powrócić do ekranu głównego?\n\nSzczegóły edytowanej pizzy nie zostaną zapisane.</string>
     <string name="dialog_back_without_saving_button_text">Powróć</string>

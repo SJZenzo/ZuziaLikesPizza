@@ -75,6 +75,7 @@
         android:src="@drawable/ic_archives"
         android:text="@string/fragment_pizzas_list_archives_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

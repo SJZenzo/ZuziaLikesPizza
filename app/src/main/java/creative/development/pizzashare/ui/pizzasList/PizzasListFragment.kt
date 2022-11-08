@@ -28,9 +28,11 @@ class PizzasListFragment :
 
     private val pizzasListAdapter = GroupAdapter<GroupieViewHolder>()
 
+    private var isViewArchive: Boolean = false
+
     override fun onResume() {
         super.onResume()
-        viewModel.refreshPizzasList()
+        viewModel.refreshPizzasList(isViewArchive)
     }
 
     override fun onBind(view: View) = FragmentPizzasListBinding.bind(view)
@@ -38,6 +40,9 @@ class PizzasListFragment :
     override fun FragmentPizzasListBinding.subscribe() {
         fragmentPizzasListAddPizzaFloatingButton.setOnClickListener {
             goToPizzaDetails()
+        }
+        btnArchives.setOnClickListener {
+            changeViewArchiveOrNot()
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
     }
@@ -69,6 +74,11 @@ class PizzasListFragment :
         navigate(action)
     }
 
+    private fun changeViewArchiveOrNot() {
+        isViewArchive = isViewArchive.not()
+        viewModel.refreshPizzasList(isViewArchive)
+    }
+
     private fun showRemovePizzasListItemConfirmationDialog(
         pizzaDataHolder: PizzasListItemDataHolder
     ) {
@@ -79,9 +89,23 @@ class PizzasListFragment :
                 pizzaDataHolder.pizza.name
             ),
             approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text),
-            extraButtonText = getString(R.string.dialog_remove_pizzas_list_archive_button_text),
-            onApproveAction = { viewModel.removePizzaItem(pizzaDataHolder.pizzaIndex) },
-            onExtraAction = { viewModel.archivePizzaItem(pizzaDataHolder.pizzaIndex, true) }
+            extraButtonText = if (isViewArchive) {
+                getString(R.string.dialog_remove_pizzas_list_archive_button_text)
+            } else {
+                getString(R.string.dialog_remove_pizzas_list_archivezed_button_text)
+            },
+            onApproveAction = {
+                viewModel.removePizzaItem(
+                    pizzaDataHolder.pizzaIndex,
+                    isViewArchive
+                )
+            },
+            onExtraAction = {
+                viewModel.archivePizzaItem(
+                    pizzaDataHolder.pizzaIndex,
+                    isViewArchive
+                )
+            }
         )
     }
 }

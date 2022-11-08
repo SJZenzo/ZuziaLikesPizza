@@ -58,8 +58,8 @@ class PizzaManagerImpl @Inject constructor(
         return pizzasList[index]
     }
 
-    override fun getAll(): List<Pizza> {
-        return pizzasList
+    override fun getAll(archiveOrNot: Boolean): List<Pizza> {
+        return pizzasList.filter { it.isArchive  == archiveOrNot }
     }
 
     override fun remove(index: Int) {
