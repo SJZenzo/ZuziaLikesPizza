@@ -52,6 +52,7 @@ class PizzaManagerImpl @Inject constructor(
 
     override fun setArchive(index: Int, archive: Boolean) {
         pizzasList[index].isArchive = archive
+        savePizzasList()
     }
 
     override fun get(index: Int): Pizza {
@@ -82,6 +83,8 @@ class PizzaManagerImpl @Inject constructor(
 
     private suspend fun Context.savePizzasList(pizzasList: List<Pizza>) =
         pizzasListDataStore.edit { preferences ->
-            preferences[pizzasListDataStoreJsonKey] = gson.toJson(pizzasList)
+            preferences[pizzasListDataStoreJsonKey]?.let {
+                gson.toJson(pizzasList)
+            }
         }
 }
