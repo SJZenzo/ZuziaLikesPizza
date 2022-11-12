@@ -29,23 +29,21 @@ class PizzasListFragment :
 
     private val pizzasListAdapter = GroupAdapter<GroupieViewHolder>()
 
-    private var isViewArchive: Boolean = false
-
     override fun onResume() {
         super.onResume()
-        isViewArchive = false
-        viewModel.refreshPizzasList(isViewArchive)
+        viewModel.refreshPizzasList()
     }
 
     override fun onBind(view: View) = FragmentPizzasListBinding.bind(view)
 
     override fun FragmentPizzasListBinding.subscribe() {
         fragmentPizzasListAddPizzaFloatingButton.setOnClickListener {
-            goToPizzaDetails()
+            goToPizzaDetails(viewModel.isViewArchive)
         }
         btnArchives.setOnClickListener {
-            changeViewArchiveOrNot()
-            if (isViewArchive) it.setBackgroundResource(R.drawable.ic_unarchive)
+            viewModel.changeViewArchiveOrNot()
+            if (viewModel.isViewArchive)
+                it.setBackgroundResource(R.drawable.ic_unarchive)
             else it.setBackgroundResource(R.drawable.ic_archives)
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
@@ -64,25 +62,23 @@ class PizzasListFragment :
             )
         }
         onClickPizzasListItemEvent.observe(viewLifecycleOwner) { pizzaDataHolder ->
-            goToPizzaDetails(pizzaDataHolder.pizzaIndex)
+            goToPizzaDetails(viewModel.isViewArchive, pizzaDataHolder.pizzaIndex)
         }
         onRemovePizzasListItemEvent.observe(viewLifecycleOwner) { pizzaDataHolder ->
             showRemovePizzasListItemConfirmationDialog(pizzaDataHolder)
         }
     }
 
-    private fun goToPizzaDetails(pizzaIndex: Int = Consts.NEW_PIZZA_INDEX) {
+    private fun goToPizzaDetails(isArchiveOrNot: Boolean, pizzaIndex: Int = Consts.NEW_PIZZA_INDEX) {
         val action = PizzasListFragmentDirections.actionFragmentPizzasListToFragmentPizzaDetails(
-            pizzaIndex
+            pizzaIndex,
+            isArchiveOrNot
         )
         navigate(action)
 
     }
 
-    private fun changeViewArchiveOrNot() {
-        isViewArchive = isViewArchive.not()
-        viewModel.refreshPizzasList(isViewArchive)
-    }
+
 
     private fun showRemovePizzasListItemConfirmationDialog(
         pizzaDataHolder: PizzasListItemDataHolder
@@ -92,17 +88,17 @@ class PizzasListFragment :
                 R.string.dialog_remove_pizzas_list_item_content, pizzaDataHolder.pizza.name
             ),
             approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text),
-            extraButtonText = if (!isViewArchive)
+            extraButtonText = if (!viewModel.isViewArchive)
                 getString(R.string.dialog_remove_pizzas_list_archive_button_text)
             else getString(R.string.dialog_remove_pizzas_list_unarchive_button_text),
             onApproveAction = {
                 viewModel.removePizzaItem(
-                    pizzaDataHolder.pizzaIndex, isViewArchive
+                    pizzaDataHolder.pizzaIndex
                 )
             },
             onExtraAction = {
                 viewModel.archivePizzaItem(
-                    pizzaDataHolder.pizzaIndex, isViewArchive
+                    pizzaDataHolder.pizzaIndex
                 )
             })
     }

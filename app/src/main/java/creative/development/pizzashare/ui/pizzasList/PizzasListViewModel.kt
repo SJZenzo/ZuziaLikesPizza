@@ -17,9 +17,10 @@ class PizzasListViewModel @Inject constructor(
     val countedTotalCostEvent = EventLiveData<Double>()
     val onClickPizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
     val onRemovePizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
+    var isViewArchive: Boolean = false
 
-    fun refreshPizzasList(archiveOrNot: Boolean) {
-        pizzaManager.getAll(archiveOrNot).let { pizzasList ->
+    fun refreshPizzasList() {
+        pizzaManager.getAll(isViewArchive).let { pizzasList ->
             loadedPizzasListEvent.value = pizzasList.map { pizza ->
                 PizzaListItem(
                     pizza = pizza,
@@ -37,13 +38,18 @@ class PizzasListViewModel @Inject constructor(
         }
     }
 
-    fun removePizzaItem(pizzaIndex: Int, isArchive: Boolean) {
+    fun removePizzaItem(pizzaIndex: Int) {
         pizzaManager.remove(pizzaIndex)
-        refreshPizzasList(isArchive)
+        refreshPizzasList()
     }
 
-    fun archivePizzaItem(pizzaIndex: Int, isArchive: Boolean) {
-        pizzaManager.setArchive(pizzaIndex, isArchive.not())
-        refreshPizzasList(isArchive)
+    fun archivePizzaItem(pizzaIndex: Int) {
+        pizzaManager.setArchive(pizzaIndex, isViewArchive.not())
+        refreshPizzasList()
+    }
+
+    fun changeViewArchiveOrNot() {
+        isViewArchive = isViewArchive.not()
+        refreshPizzasList()
     }
 }

@@ -22,6 +22,9 @@
         <argument
             android:name="pizza_index"
             app:argType="integer" />
+        <argument
+            android:name="is_archive"
+            app:argType="boolean" />
     </fragment>
 
 </navigation>
