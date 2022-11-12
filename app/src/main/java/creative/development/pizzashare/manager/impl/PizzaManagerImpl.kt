@@ -85,8 +85,6 @@ class PizzaManagerImpl @Inject constructor(
 
     private suspend fun Context.savePizzasList(pizzasList: List<Pizza>) =
         pizzasListDataStore.edit { preferences ->
-            preferences[pizzasListDataStoreJsonKey]?.let {
-                gson.toJson(pizzasList)
-            }
+            preferences[pizzasListDataStoreJsonKey] = gson.toJson(pizzasList)
         }
 }
