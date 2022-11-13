@@ -6,8 +6,9 @@ interface PizzaManager {
     fun init()
     fun add(pizza: Pizza)
     fun set(index: Int, pizza: Pizza)
-    fun setArchive(index: Int, archive: Boolean)
-    fun get(index: Int, archiveOrNot: Boolean): Pizza
+    fun archivate(index: Int)
+    fun restoreFromArchive(index: Int)
+    fun get(fromArchiveList: Boolean, index: Int): Pizza
     fun getAll(archiveOrNot: Boolean): List<Pizza>
     fun remove(index: Int)
 }

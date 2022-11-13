@@ -1,7 +1,7 @@
 package creative.development.pizzashare.ui.pizzasList
 
+import creative.development.pizzashare.R
 import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
-import creative.development.pizzashare.data.model.Pizza
 import creative.development.pizzashare.manager.PizzaManager
 import creative.development.pizzashare.ui.base.BaseFragmentViewModel
 import creative.development.pizzashare.utils.EventLiveData
@@ -13,11 +13,11 @@ class PizzasListViewModel @Inject constructor(
     private val pizzaManager: PizzaManager
 ) : BaseFragmentViewModel() {
 
+    private var isViewArchive: Boolean = false
     val loadedPizzasListEvent = EventLiveData<List<PizzaListItem>>()
     val countedTotalCostEvent = EventLiveData<Double>()
     val onClickPizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
     val onRemovePizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
-    var isViewArchive: Boolean = false
 
     fun refreshPizzasList() {
         pizzaManager.getAll(isViewArchive).let { pizzasList ->
@@ -44,7 +44,9 @@ class PizzasListViewModel @Inject constructor(
     }
 
     fun archivePizzaItem(pizzaIndex: Int) {
-        pizzaManager.setArchive(pizzaIndex, isViewArchive.not())
+        if (isViewArchive)
+            pizzaManager.restoreFromArchive(pizzaIndex)
+        else pizzaManager.archivate(pizzaIndex)
         refreshPizzasList()
     }
 
@@ -52,4 +54,11 @@ class PizzasListViewModel @Inject constructor(
         isViewArchive = isViewArchive.not()
         refreshPizzasList()
     }
+
+    fun getBtnArchiveIconResId(): Int {
+        return if (isViewArchive)
+            R.drawable.ic_unarchive
+        else R.drawable.ic_archives
+    }
+
 }

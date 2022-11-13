@@ -35,7 +35,7 @@ class PizzaDetailsViewModel @Inject constructor(
     private val isArchive = args.isArchive
     private val originalPizza =
         if (pizzaIndex != Consts.NEW_PIZZA_INDEX) {
-            pizzaManager.get(pizzaIndex, isArchive)
+            pizzaManager.get(isArchive, pizzaIndex)
         } else generatePizza(compareWithOriginal = false)
 
     init {
@@ -48,7 +48,6 @@ class PizzaDetailsViewModel @Inject constructor(
         price: Float? = null,
         sliceNumber: Int? = null,
         consumerNumber: Int? = null,
-        archiveBool: Boolean = false,
         compareWithOriginal: Boolean = true
     ) =
         Pizza(
@@ -68,8 +67,7 @@ class PizzaDetailsViewModel @Inject constructor(
             consumerNumber.coerceRangeOrDef(
                 DEFAULT_CONSUMERS_NUMBER..MAX_CONSUMERS_NUMBER,
                 DEFAULT_CONSUMERS_NUMBER
-            ),
-            archiveBool
+            )
         ).also { pizza ->
             if (compareWithOriginal) pizza.compareWithOriginal()
         }
