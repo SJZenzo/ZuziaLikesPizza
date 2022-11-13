@@ -61,4 +61,7 @@ class PizzasListViewModel @Inject constructor(
         else R.drawable.ic_archives
     }
 
+    fun getBtnAddIsEnable(): Boolean {
+        return !isViewArchive
+    }
 }

@@ -1,7 +1,7 @@
 package creative.development.pizzashare.ui.pizzasList
 
 import android.annotation.SuppressLint
-import android.graphics.Color
+import android.content.res.ColorStateList
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -49,6 +49,9 @@ class PizzasListFragment :
                     viewModel.getBtnArchiveIconResId()
                 )
             )
+            fragmentPizzasListAddPizzaFloatingButton.isEnabled =
+                viewModel.getBtnAddIsEnable()
+
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
     }
@@ -67,7 +70,7 @@ class PizzasListFragment :
         }
         onClickPizzasListItemEvent.observe(viewLifecycleOwner) { pizzaDataHolder ->
             if (!pizzaDataHolder.isArchive)
-            goToPizzaDetails( false, pizzaDataHolder.pizzaIndex)
+                goToPizzaDetails(false, pizzaDataHolder.pizzaIndex)
         }
         onRemovePizzasListItemEvent.observe(viewLifecycleOwner) { pizzaDataHolder ->
             showRemovePizzasListItemConfirmationDialog(pizzaDataHolder)
@@ -80,7 +83,6 @@ class PizzasListFragment :
             isArchive
         )
         navigate(action)
-
     }
 
 
