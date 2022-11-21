@@ -1,9 +1,11 @@
 package creative.development.pizzashare.ui.pizzasList
 
+import androidx.fragment.app.FragmentManager
 import creative.development.pizzashare.R
 import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
 import creative.development.pizzashare.manager.PizzaManager
 import creative.development.pizzashare.ui.base.BaseFragmentViewModel
+import creative.development.pizzashare.ui.dialog.ChangeFilterDialogFragment
 import creative.development.pizzashare.utils.EventLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -18,6 +20,8 @@ class PizzasListViewModel @Inject constructor(
     val countedTotalCostEvent = EventLiveData<Double>()
     val onClickPizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
     val onRemovePizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
+    val newFragment = ChangeFilterDialogFragment()
+
 
     fun refreshPizzasList() {
         pizzaManager.getAll(isViewArchive).let { pizzasList ->
@@ -63,5 +67,11 @@ class PizzasListViewModel @Inject constructor(
 
     fun getBtnAddIsEnable(): Boolean {
         return !isViewArchive
+    }
+
+
+    fun showDialog() {
+
+        newFragment.show(FragmentManager, "a")
     }
 }

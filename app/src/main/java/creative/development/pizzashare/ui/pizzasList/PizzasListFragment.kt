@@ -13,6 +13,7 @@ import creative.development.pizzashare.consts.Consts
 import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
 import creative.development.pizzashare.databinding.FragmentPizzasListBinding
 import creative.development.pizzashare.ui.base.BaseFragment
+import creative.development.pizzashare.ui.dialog.ChangeFilterDialogFragment
 import creative.development.pizzashare.ui.main.MainViewModel
 import creative.development.pizzashare.utils.extensions.roundToPlaces
 import creative.development.pizzashare.utils.extensions.showDialog
@@ -28,6 +29,8 @@ class PizzasListFragment :
     override val layoutResId get() = R.layout.fragment_pizzas_list
 
     private val pizzasListAdapter = GroupAdapter<GroupieViewHolder>()
+
+
 
     override fun onResume() {
         super.onResume()
@@ -50,6 +53,8 @@ class PizzasListFragment :
             )
             fragmentPizzasListAddPizzaFloatingButton.isEnabled =
                 viewModel.getBtnAddIsEnable()
+        }
+        btnFilter.setOnClickListener{
 
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
