@@ -5,13 +5,14 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class ChangeFilterDialogFragment : DialogFragment(){
+class ChangeFilterDialogFragment : BottomSheetDialogFragment(){
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
-            builder.setMessage("ss")
+            builder.setMessage("")
                 .setPositiveButton("ss",
                     DialogInterface.OnClickListener { dialog, id ->
                         // START THE GAME!

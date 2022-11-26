@@ -20,8 +20,6 @@ class PizzasListViewModel @Inject constructor(
     val countedTotalCostEvent = EventLiveData<Double>()
     val onClickPizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
     val onRemovePizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
-    val newFragment = ChangeFilterDialogFragment()
-
 
     fun refreshPizzasList() {
         pizzaManager.getAll(isViewArchive).let { pizzasList ->
@@ -67,11 +65,5 @@ class PizzasListViewModel @Inject constructor(
 
     fun getBtnAddIsEnable(): Boolean {
         return !isViewArchive
-    }
-
-
-    fun showDialog() {
-
-        newFragment.show(FragmentManager, "a")
     }
 }

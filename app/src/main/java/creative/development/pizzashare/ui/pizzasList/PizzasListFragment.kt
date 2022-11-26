@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import creative.development.pizzashare.R
@@ -55,7 +56,9 @@ class PizzasListFragment :
                 viewModel.getBtnAddIsEnable()
         }
         btnFilter.setOnClickListener{
-
+            findNavController().navigate(
+                R.id.action_fragment_pizzas_list_to_changeFilterDialogFragment
+            )S
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
     }
