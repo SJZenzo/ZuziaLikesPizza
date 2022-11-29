@@ -58,7 +58,7 @@ class PizzasListFragment :
         btnFilter.setOnClickListener{
             findNavController().navigate(
                 R.id.action_fragment_pizzas_list_to_changeFilterDialogFragment
-            )S
+            )
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
     }
