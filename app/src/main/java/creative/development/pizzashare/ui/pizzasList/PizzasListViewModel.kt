@@ -16,6 +16,7 @@ class PizzasListViewModel @Inject constructor(
 ) : BaseFragmentViewModel() {
 
     private var isViewArchive: Boolean = false
+    private var dialogFragment = ChangeFilterDialogFragment()
     val loadedPizzasListEvent = EventLiveData<List<PizzaListItem>>()
     val countedTotalCostEvent = EventLiveData<Double>()
     val onClickPizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
@@ -65,5 +66,9 @@ class PizzasListViewModel @Inject constructor(
 
     fun getBtnAddIsEnable(): Boolean {
         return !isViewArchive
+    }
+
+    fun showDisplayListDialog() {
+
     }
 }

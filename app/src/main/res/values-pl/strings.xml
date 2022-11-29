@@ -18,6 +18,8 @@
     <string name="dialog_back_without_saving_title">Zmiany nie zostały zapisane</string>
     <string name="dialog_back_without_saving_content">Czy na pewno chcesz powrócić do ekranu głównego?\n\nSzczegóły edytowanej pizzy nie zostaną zapisane.</string>
     <string name="dialog_back_without_saving_button_text">Powróć</string>
+    <string name="dialog_change_list_view_header">Wybierz sposób wyświetlania listy pizz</string>
+    <string name="dialog_change_list_view_aprrove_choice">Gotowe</string>
 
     <!-- Pizzas list screen -->
     <string name="fragment_pizzas_list_summary_label">Koszt całkowity</string>
@@ -40,5 +42,11 @@
     <string name="fragment_pizza_details_pizza_name_error">Nazwa pizzy nie może być pusta</string>
     <string name="fragment_pizza_details_pizza_diameter_error">Średnica pizzy powinna być większa od 0</string>
     <string name="fragment_pizza_details_pizza_price_error">Cena pizzy powinna być większa od 0</string>
+
+    <!-- Pizza dialog string array -->
+    <string-array name="dialog_change_list_view_choice">
+        <item>Pokaż wszystkie</item>
+        <item>Pokaż 2 listy</item>
+    </string-array>
 
 </resources>

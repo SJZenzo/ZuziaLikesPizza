@@ -31,6 +31,8 @@
     <string name="dialog_back_without_saving_title">The changes weren\'t saved</string>
     <string name="dialog_back_without_saving_content">Are you sure you want to back to main screen?\n\nYour pizza details will not be saved.</string>
     <string name="dialog_back_without_saving_button_text">Back</string>
+    <string name="dialog_change_list_view_header">Chose how to diplay pizzas list</string>
+    <string name="dialog_change_list_view_aprrove_choice">Done</string>
 
     <!-- Fragments labels -->
     <string translatable="false" name="fragment_pizzas_list_label">Pizzas List</string>
@@ -61,5 +63,11 @@
     <string name="fragment_pizza_details_pizza_name_error">Pizza name can\'t be empty</string>
     <string name="fragment_pizza_details_pizza_diameter_error">Pizza diameter should be larger than 0</string>
     <string name="fragment_pizza_details_pizza_price_error">Pizza price should be larger than 0</string>
+
+    <!-- Pizza dialog string array -->
+    <string-array name="dialog_change_list_view_choice">
+        <item>Show all</item>
+        <item>Show 2 lists</item>
+    </string-array>
 
 </resources>

@@ -59,6 +59,7 @@ class PizzasListFragment :
             findNavController().navigate(
                 R.id.action_fragment_pizzas_list_to_changeFilterDialogFragment
             )
+            viewModel.showDisplayListDialog()
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
     }
