@@ -1,12 +1,12 @@
 package creative.development.pizzashare.ui.pizzasList
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import creative.development.pizzashare.R
@@ -14,7 +14,6 @@ import creative.development.pizzashare.consts.Consts
 import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
 import creative.development.pizzashare.databinding.FragmentPizzasListBinding
 import creative.development.pizzashare.ui.base.BaseFragment
-import creative.development.pizzashare.ui.dialog.ChangeFilterDialogFragment
 import creative.development.pizzashare.ui.main.MainViewModel
 import creative.development.pizzashare.utils.extensions.roundToPlaces
 import creative.development.pizzashare.utils.extensions.showDialog
@@ -30,8 +29,6 @@ class PizzasListFragment :
     override val layoutResId get() = R.layout.fragment_pizzas_list
 
     private val pizzasListAdapter = GroupAdapter<GroupieViewHolder>()
-
-
 
     override fun onResume() {
         super.onResume()
@@ -55,11 +52,8 @@ class PizzasListFragment :
             fragmentPizzasListAddPizzaFloatingButton.isEnabled =
                 viewModel.getBtnAddIsEnable()
         }
-        btnFilter.setOnClickListener{
-            findNavController().navigate(
-                R.id.action_fragment_pizzas_list_to_changeFilterDialogFragment
-            )
-            viewModel.showDisplayListDialog()
+        btnFilter.setOnClickListener {
+            showFilterDialogFragment()
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
     }
@@ -77,8 +71,9 @@ class PizzasListFragment :
             )
         }
         onClickPizzasListItemEvent.observe(viewLifecycleOwner) { pizzaDataHolder ->
-            if (!pizzaDataHolder.isArchive)
+            if (!pizzaDataHolder.isArchive) {
                 goToPizzaDetails(false, pizzaDataHolder.pizzaIndex)
+            }
         }
         onRemovePizzasListItemEvent.observe(viewLifecycleOwner) { pizzaDataHolder ->
             showRemovePizzasListItemConfirmationDialog(pizzaDataHolder)
@@ -93,19 +88,32 @@ class PizzasListFragment :
         navigate(action)
     }
 
-
+    private fun showFilterDialogFragment() {
+        context?.showDialog(
+            title = getString(R.string.dialog_change_list_view_header),
+            items = resources.getStringArray(R.array.dialog_change_list_view_choice).toList()
+        ) { index ->
+            if (index == 0) {
+                Log.e("!T!", "Osobono")
+            } else {
+                Log.e("!T!", "Razem")
+            }
+        }
+    }
 
     private fun showRemovePizzasListItemConfirmationDialog(
         pizzaDataHolder: PizzasListItemDataHolder
     ) {
-        context?.showDialog(title = getString(R.string.dialog_remove_pizzas_list_item_title),
+        context?.showDialog(
+            title = getString(R.string.dialog_remove_pizzas_list_item_title),
             content = getString(
-                R.string.dialog_remove_pizzas_list_item_content, pizzaDataHolder.pizza.name
+                R.string.dialog_remove_pizzas_list_item_content,
+                pizzaDataHolder.pizza.name
             ),
             approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text),
-            extraButtonText = if (!pizzaDataHolder.isArchive)
+            extraButtonText = if (!pizzaDataHolder.isArchive) {
                 getString(R.string.dialog_remove_pizzas_list_archive_button_text)
-            else getString(R.string.dialog_remove_pizzas_list_unarchive_button_text),
+            } else getString(R.string.dialog_remove_pizzas_list_unarchive_button_text),
             onApproveAction = {
                 viewModel.removePizzaItem(
                     pizzaDataHolder.pizzaIndex
@@ -115,6 +123,7 @@ class PizzasListFragment :
                 viewModel.archivePizzaItem(
                     pizzaDataHolder.pizzaIndex
                 )
-            })
+            }
+        )
     }
 }

@@ -22,6 +22,7 @@
     <string name="unit_for_pizza_surface">dm²</string>
 
     <!-- Dialogs labels -->
+    <string name="dialog_accept_button_default_text">Ok</string>
     <string name="dialog_deny_button_default_text">Cancel</string>
     <string name="dialog_remove_pizzas_list_item_title">Remove pizza</string>
     <string name="dialog_remove_pizzas_list_item_content"><![CDATA[Are you sure you want to remove pizza named <b><i>%s</i></b>&#8201;?<br/><br/>This action can’t be undone.]]></string>

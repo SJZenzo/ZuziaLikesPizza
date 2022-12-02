@@ -1,11 +1,9 @@
 package creative.development.pizzashare.ui.pizzasList
 
-import androidx.fragment.app.FragmentManager
 import creative.development.pizzashare.R
 import creative.development.pizzashare.data.holder.PizzasListItemDataHolder
 import creative.development.pizzashare.manager.PizzaManager
 import creative.development.pizzashare.ui.base.BaseFragmentViewModel
-import creative.development.pizzashare.ui.dialog.ChangeFilterDialogFragment
 import creative.development.pizzashare.utils.EventLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -16,7 +14,6 @@ class PizzasListViewModel @Inject constructor(
 ) : BaseFragmentViewModel() {
 
     private var isViewArchive: Boolean = false
-    private var dialogFragment = ChangeFilterDialogFragment()
     val loadedPizzasListEvent = EventLiveData<List<PizzaListItem>>()
     val countedTotalCostEvent = EventLiveData<Double>()
     val onClickPizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()

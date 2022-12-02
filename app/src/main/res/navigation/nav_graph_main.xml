@@ -12,9 +12,6 @@
         <action
             android:id="@+id/action_fragment_pizzas_list_to_fragment_pizza_details"
             app:destination="@id/fragment_pizza_details" />
-        <action
-            android:id="@+id/action_fragment_pizzas_list_to_changeFilterDialogFragment"
-            app:destination="@id/changeFilterDialogFragment" />
     </fragment>
 
     <fragment
@@ -29,9 +26,5 @@
             android:name="is_archive"
             app:argType="boolean" />
     </fragment>
-    <dialog
-        android:id="@+id/changeFilterDialogFragment"
-        android:name="creative.development.pizzashare.ui.dialog.ChangeFilterDialogFragment"
-        android:label="ChangeFilterDialogFragment" />
 
 </navigation>
