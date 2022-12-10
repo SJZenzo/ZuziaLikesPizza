@@ -9,6 +9,6 @@ interface PizzaManager {
     fun archivate(index: Int)
     fun restoreFromArchive(index: Int)
     fun get(fromArchiveList: Boolean, index: Int): Pizza
-    fun getAll(archiveOrNot: Boolean): List<Pizza>
+    fun getAll(archiveOrNot: Boolean, viewTypeAll: Boolean): List<Pizza>
     fun remove(index: Int)
 }

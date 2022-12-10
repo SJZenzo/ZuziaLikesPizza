@@ -14,13 +14,14 @@ class PizzasListViewModel @Inject constructor(
 ) : BaseFragmentViewModel() {
 
     private var isViewArchive: Boolean = false
+    private var viewTypeAll: Boolean = false
     val loadedPizzasListEvent = EventLiveData<List<PizzaListItem>>()
     val countedTotalCostEvent = EventLiveData<Double>()
     val onClickPizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
     val onRemovePizzasListItemEvent = EventLiveData<PizzasListItemDataHolder>()
 
     fun refreshPizzasList() {
-        pizzaManager.getAll(isViewArchive).let { pizzasList ->
+        pizzaManager.getAll(isViewArchive, viewTypeAll).let { pizzasList ->
             loadedPizzasListEvent.value = pizzasList.map { pizza ->
                 PizzaListItem(
                     pizza = pizza,
@@ -65,7 +66,14 @@ class PizzasListViewModel @Inject constructor(
         return !isViewArchive
     }
 
-    fun showDisplayListDialog() {
-
+    fun setListView(index: Int){
+        viewTypeAll = index != 0
+        refreshPizzasList()
     }
+    fun getListChosen(): Int {
+        return if (viewTypeAll) 0
+        else 1
+    }
+
+
 }

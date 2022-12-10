@@ -80,8 +80,8 @@ class PizzasListFragment :
         }
     }
 
-    private fun goToPizzaDetails(isArchive: Boolean, pizzaIndex: Int = Consts.NEW_PIZZA_INDEX) {
-        val action = PizzasListFragmentDirections.actionFragmentPizzasListToFragmentPizzaDetails(
+        private fun goToPizzaDetails(isArchive: Boolean, pizzaIndex: Int = Consts.NEW_PIZZA_INDEX) {
+            val action = PizzasListFragmentDirections.actionFragmentPizzasListToFragmentPizzaDetails(
             pizzaIndex,
             isArchive
         )
@@ -91,14 +91,12 @@ class PizzasListFragment :
     private fun showFilterDialogFragment() {
         context?.showDialog(
             title = getString(R.string.dialog_change_list_view_header),
+            checkedItem = viewModel.getListChosen(),
             items = resources.getStringArray(R.array.dialog_change_list_view_choice).toList()
         ) { index ->
-            if (index == 0) {
-                Log.e("!T!", "Osobono")
-            } else {
-                Log.e("!T!", "Razem")
-            }
+            viewModel.setListView(index)
         }
+
     }
 
     private fun showRemovePizzasListItemConfirmationDialog(
@@ -111,6 +109,7 @@ class PizzasListFragment :
                 pizzaDataHolder.pizza.name
             ),
             approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text),
+            denyButtonText = getString(R.string.dialog_deny_button_default_text),
             extraButtonText = if (!pizzaDataHolder.isArchive) {
                 getString(R.string.dialog_remove_pizzas_list_archive_button_text)
             } else getString(R.string.dialog_remove_pizzas_list_unarchive_button_text),

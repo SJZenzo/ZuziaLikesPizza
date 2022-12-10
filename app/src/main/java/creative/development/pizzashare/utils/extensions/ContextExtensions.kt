@@ -12,8 +12,9 @@ fun Context.showDialog(
     title: String,
     content: String? = null,
     items: List<String>? = null,
+    checkedItem: Int  = -1,
     approveButtonText: String = getString(R.string.dialog_accept_button_default_text),
-    denyButtonText: String = getString(R.string.dialog_deny_button_default_text),
+    denyButtonText: String? = null,
     extraButtonText: String? = null,
     onDenyAction: (() -> Unit)? = null,
     onExtraAction: (() -> Unit)? = null,
@@ -25,7 +26,7 @@ fun Context.showDialog(
             setMessage(content.parseHtml())
         }
         items?.let {
-            setSingleChoiceItems(items.toTypedArray(), 0) { dialog, which ->
+            setSingleChoiceItems(items.toTypedArray(), checkedItem) { dialog, which ->
                 onApproveAction?.invoke(which)
             }
         }
