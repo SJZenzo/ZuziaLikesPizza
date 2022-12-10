@@ -32,9 +32,10 @@ class PizzaDetailsViewModel @Inject constructor(
 
     private val args = PizzaDetailsFragmentArgs.fromSavedStateHandle(savedStateHandle)
     private val pizzaIndex = args.pizzaIndex
+    private val isArchive = args.isArchive
     private val originalPizza =
         if (pizzaIndex != Consts.NEW_PIZZA_INDEX) {
-            pizzaManager.get(pizzaIndex)
+            pizzaManager.get(isArchive, pizzaIndex)
         } else generatePizza(compareWithOriginal = false)
 
     init {

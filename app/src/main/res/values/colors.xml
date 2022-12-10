@@ -17,5 +17,6 @@
     <color name="papaya_whip">#FFF1D7</color>
     <color name="papaya_whip_light">#FBF5EB</color>
     <color name="maximum_green">#5F8D37</color>
+    <color name="minimum_green">#424540</color>
 
 </resources>

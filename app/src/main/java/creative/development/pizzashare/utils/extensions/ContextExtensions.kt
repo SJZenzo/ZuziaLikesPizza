@@ -10,32 +10,39 @@ import creative.development.pizzashare.R
 
 fun Context.showDialog(
     title: String,
-    content: String,
-    approveButtonText: String,
+    content: String? = null,
+    items: List<String>? = null,
+    checkedItem: Int  = -1,
+    approveButtonText: String = getString(R.string.dialog_accept_button_default_text),
+    denyButtonText: String? = null,
     extraButtonText: String? = null,
-    denyButtonText: String = getString(R.string.dialog_deny_button_default_text),
     onDenyAction: (() -> Unit)? = null,
-    onArchiveAction: (() -> Unit)? = null,
-    onApproveAction: (() -> Unit)?
+    onExtraAction: (() -> Unit)? = null,
+    onApproveAction: ((Int) -> Unit)?
 ): AlertDialog = MaterialAlertDialogBuilder(this, R.style.Dialog)
     .apply {
         setTitle(title.parseHtml())
-        setMessage(content.parseHtml())
+        content?.let {
+            setMessage(content.parseHtml())
+        }
+        items?.let {
+            setSingleChoiceItems(items.toTypedArray(), checkedItem) { dialog, which ->
+                onApproveAction?.invoke(which)
+            }
+        }
         setNegativeButton(denyButtonText) { dialog, _ ->
             dialog.dismiss()
             onDenyAction?.invoke()
         }
-
         extraButtonText?.let {
             setNeutralButton(extraButtonText) { dialog, _ ->
                 dialog.dismiss()
-                onArchiveAction?.invoke()
+                onExtraAction?.invoke()
             }
         }
-
         setPositiveButton(approveButtonText) { dialog, _ ->
             dialog.dismiss()
-            onApproveAction?.invoke()
+            onApproveAction?.invoke(-1)
         }
     }
     .show()

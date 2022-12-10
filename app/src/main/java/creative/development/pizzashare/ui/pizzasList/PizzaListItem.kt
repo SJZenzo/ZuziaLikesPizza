@@ -32,10 +32,10 @@ class PizzaListItem(
             itemPizzasListConsumersNumberLabelSmallScreens.text =
                 "${pizza.consumersNumber}"
             root.setOnClickListener {
-                clickListener(PizzasListItemDataHolder(position, pizza))
+                clickListener(PizzasListItemDataHolder(position, pizza.isArchive, pizza))
             }
             itemPizzasListRemoveButton.setOnClickListener {
-                removeListener(PizzasListItemDataHolder(position, pizza))
+                removeListener(PizzasListItemDataHolder(position, pizza.isArchive, pizza))
             }
         }
     }

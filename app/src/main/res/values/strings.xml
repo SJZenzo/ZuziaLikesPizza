@@ -22,14 +22,18 @@
     <string name="unit_for_pizza_surface">dm²</string>
 
     <!-- Dialogs labels -->
+    <string name="dialog_accept_button_default_text">Ok</string>
     <string name="dialog_deny_button_default_text">Cancel</string>
     <string name="dialog_remove_pizzas_list_item_title">Remove pizza</string>
     <string name="dialog_remove_pizzas_list_item_content"><![CDATA[Are you sure you want to remove pizza named <b><i>%s</i></b>&#8201;?<br/><br/>This action can’t be undone.]]></string>
     <string name="dialog_remove_pizzas_list_agree_button_text">Remove</string>
     <string name="dialog_remove_pizzas_list_archive_button_text">Archive</string>
+    <string name="dialog_remove_pizzas_list_unarchive_button_text">unarchive</string>
     <string name="dialog_back_without_saving_title">The changes weren\'t saved</string>
     <string name="dialog_back_without_saving_content">Are you sure you want to back to main screen?\n\nYour pizza details will not be saved.</string>
     <string name="dialog_back_without_saving_button_text">Back</string>
+    <string name="dialog_change_list_view_header">Chose how to diplay pizzas list</string>
+    <string name="dialog_change_list_view_aprrove_choice">Done</string>
 
     <!-- Fragments labels -->
     <string translatable="false" name="fragment_pizzas_list_label">Pizzas List</string>
@@ -43,6 +47,7 @@
     <string name="fragment_pizzas_list_summary_label">Total cost</string>
     <string name="fragment_pizzas_list_add_pizza_button">Add pizza</string>
     <string name="fragment_pizzas_list_empty_list_message">No pizza has been added yet</string>
+    <string name="fragment_pizzas_list_archives_button">Archives</string>
 
     <!-- Pizza details screen -->
     <string name="fragment_pizza_details_name_label">Pizza name</string>
@@ -59,5 +64,11 @@
     <string name="fragment_pizza_details_pizza_name_error">Pizza name can\'t be empty</string>
     <string name="fragment_pizza_details_pizza_diameter_error">Pizza diameter should be larger than 0</string>
     <string name="fragment_pizza_details_pizza_price_error">Pizza price should be larger than 0</string>
+
+    <!-- Pizza dialog string array -->
+    <string-array name="dialog_change_list_view_choice">
+        <item>Show all</item>
+        <item>Show 2 lists</item>
+    </string-array>
 
 </resources>

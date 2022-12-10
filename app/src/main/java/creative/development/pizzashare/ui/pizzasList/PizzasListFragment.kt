@@ -1,7 +1,9 @@
 package creative.development.pizzashare.ui.pizzasList
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -37,7 +39,21 @@ class PizzasListFragment :
 
     override fun FragmentPizzasListBinding.subscribe() {
         fragmentPizzasListAddPizzaFloatingButton.setOnClickListener {
-            goToPizzaDetails()
+            goToPizzaDetails(false)
+        }
+        btnArchives.setOnClickListener {
+            viewModel.changeViewArchiveOrNot()
+            btnArchives.setImageDrawable(
+                ContextCompat.getDrawable(
+                    btnArchives.context,
+                    viewModel.getBtnArchiveIconResId()
+                )
+            )
+            fragmentPizzasListAddPizzaFloatingButton.isEnabled =
+                viewModel.getBtnAddIsEnable()
+        }
+        btnFilter.setOnClickListener {
+            showFilterDialogFragment()
         }
         fragmentPizzasListRecyclerView.adapter = pizzasListAdapter
     }
@@ -55,18 +71,32 @@ class PizzasListFragment :
             )
         }
         onClickPizzasListItemEvent.observe(viewLifecycleOwner) { pizzaDataHolder ->
-            goToPizzaDetails(pizzaDataHolder.pizzaIndex)
+            if (!pizzaDataHolder.isArchive) {
+                goToPizzaDetails(false, pizzaDataHolder.pizzaIndex)
+            }
         }
         onRemovePizzasListItemEvent.observe(viewLifecycleOwner) { pizzaDataHolder ->
             showRemovePizzasListItemConfirmationDialog(pizzaDataHolder)
         }
     }
 
-    private fun goToPizzaDetails(pizzaIndex: Int = Consts.NEW_PIZZA_INDEX) {
-        val action = PizzasListFragmentDirections.actionFragmentPizzasListToFragmentPizzaDetails(
-            pizzaIndex
+        private fun goToPizzaDetails(isArchive: Boolean, pizzaIndex: Int = Consts.NEW_PIZZA_INDEX) {
+            val action = PizzasListFragmentDirections.actionFragmentPizzasListToFragmentPizzaDetails(
+            pizzaIndex,
+            isArchive
         )
         navigate(action)
+    }
+
+    private fun showFilterDialogFragment() {
+        context?.showDialog(
+            title = getString(R.string.dialog_change_list_view_header),
+            checkedItem = viewModel.getListChosen(),
+            items = resources.getStringArray(R.array.dialog_change_list_view_choice).toList()
+        ) { index ->
+            viewModel.setListView(index)
+        }
+
     }
 
     private fun showRemovePizzasListItemConfirmationDialog(
@@ -79,9 +109,20 @@ class PizzasListFragment :
                 pizzaDataHolder.pizza.name
             ),
             approveButtonText = getString(R.string.dialog_remove_pizzas_list_agree_button_text),
-            extraButtonText = getString(R.string.dialog_remove_pizzas_list_archive_button_text)
-        ) {
-            viewModel.removePizzaItem(pizzaDataHolder.pizzaIndex)
-        }
+            denyButtonText = getString(R.string.dialog_deny_button_default_text),
+            extraButtonText = if (!pizzaDataHolder.isArchive) {
+                getString(R.string.dialog_remove_pizzas_list_archive_button_text)
+            } else getString(R.string.dialog_remove_pizzas_list_unarchive_button_text),
+            onApproveAction = {
+                viewModel.removePizzaItem(
+                    pizzaDataHolder.pizzaIndex
+                )
+            },
+            onExtraAction = {
+                viewModel.archivePizzaItem(
+                    pizzaDataHolder.pizzaIndex
+                )
+            }
+        )
     }
 }
