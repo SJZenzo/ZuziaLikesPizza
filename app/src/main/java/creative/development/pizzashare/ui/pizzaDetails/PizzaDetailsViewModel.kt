@@ -5,6 +5,8 @@ import creative.development.pizzashare.consts.Consts
 import creative.development.pizzashare.data.model.Pizza
 import creative.development.pizzashare.manager.PizzaManager
 import creative.development.pizzashare.ui.base.BaseFragmentViewModel
+import creative.development.pizzashare.ui.pizzasList.PizzasListFragment
+import creative.development.pizzashare.ui.pizzasList.PizzasListFragmentArgs
 import creative.development.pizzashare.utils.EventLiveData
 import creative.development.pizzashare.utils.extensions.coerceRangeOrDef
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,9 +35,11 @@ class PizzaDetailsViewModel @Inject constructor(
     private val args = PizzaDetailsFragmentArgs.fromSavedStateHandle(savedStateHandle)
     private val pizzaIndex = args.pizzaIndex
     private val isArchive = args.isArchive
+    private val argsFromList = PizzasListFragmentArgs.fromSavedStateHandle(savedStateHandle)
+    private val isListOfAll = argsFromList.isListOfAll
     private val originalPizza =
         if (pizzaIndex != Consts.NEW_PIZZA_INDEX) {
-            pizzaManager.get(isArchive, pizzaIndex)
+            pizzaManager.get(isArchive, isListOfAll, pizzaIndex)
         } else generatePizza(compareWithOriginal = false)
 
     init {

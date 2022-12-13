@@ -47,7 +47,7 @@ class PizzasListViewModel @Inject constructor(
     fun archivePizzaItem(pizzaIndex: Int) {
         if (isViewArchive)
             pizzaManager.restoreFromArchive(pizzaIndex)
-        else pizzaManager.archivate(pizzaIndex)
+        else pizzaManager.archive(pizzaIndex)
         refreshPizzasList()
     }
 
@@ -70,6 +70,7 @@ class PizzasListViewModel @Inject constructor(
         viewTypeAll = index != 0
         refreshPizzasList()
     }
+
     fun getListChosen(): Int {
         return if (viewTypeAll) 0
         else 1

@@ -9,6 +9,9 @@
         android:name="creative.development.pizzashare.ui.pizzasList.PizzasListFragment"
         android:label="@string/fragment_pizzas_list_label"
         tools:layout="@layout/fragment_pizzas_list">
+<!--        <argument-->
+<!--            android:name="is_list_of_all"-->
+<!--            app:argType="boolean" />-->
         <action
             android:id="@+id/action_fragment_pizzas_list_to_fragment_pizza_details"
             app:destination="@id/fragment_pizza_details" />
